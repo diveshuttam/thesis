@@ -107,7 +107,7 @@ def curvature(x,y,a):
         tdiff = (x[-1]+x[-2])/2.0 - (x[-2]+x[-3])/2.0
         ddwin_bytes.append((win_bytes[-1]-win_bytes[-3])/(tdiff))
         print(ddwin_bytes)
-        if(ddwin_bytes[-1]>dwin_bytes.mean):
+        if(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+ddwin_bytes[-1])/2.0)>10):
             τ = max(τ_min,τ/1.55)
             ws = max(3,ceil(ws))
         else:
