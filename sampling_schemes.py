@@ -85,7 +85,7 @@ def curvature(x,y,a):
     ddwin_bytes = window([])
     ws = 3
     
-
+    previous=False
     while(current_time < x[-1]):
         current_reading = poller(current_time)
         x1.append(current_time)
@@ -111,11 +111,14 @@ def curvature(x,y,a):
         #instantaneous curvature
         print(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+ddwin_bytes[-1])/2.0))
         if(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+ddwin_bytes[-1])/2.0)>100000):
-            τ = max(τ_min,τ/2.0)
-            ws = max(3,ceil(ws))
+            if(previous==False):
+                τ = max(τ_min,τ/3.0)
+                ws = max(3,ceil(ws))
+                previous=True
         else:
             τ = min(τ_max,τ*2)
             ws = ws + 1
+            previous=False
         
         while win_bytes.length>ws:
             win_bytes.popleft()
