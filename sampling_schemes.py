@@ -127,3 +127,44 @@ def curvature(x,y,a):
         current_time += τ
     
     return x1,y1
+
+
+def momon(x,y,a):
+    x1,y1 = [],[]
+    poller = a
+
+    # initial variables
+    current_time = x[0]
+    τ = 1.0
+    τ_max = 5.0
+    τ_min = 0.5
+    last_reading = 0
+    win = window([])
+    ws = 3
+    
+    current_reading=0
+    while(current_time < x[-1]):
+        last_reading=current_reading
+        current_reading = poller(current_time)
+        x1.append(current_time)
+        y1.append(current_reading)
+        print(f"appending {current_time}, {current_reading}, τ = {τ}")
+        var = current_reading-last_reading
+        if(win.length<3):
+            current_time+=τ
+            win.append(var)
+            continue
+
+        if(abs(var)/(last_reading+1)<0.2):
+            τ = max(τ_min,τ/2)
+            ws = max(3,ceil(ws/2))
+        else:
+            τ = min(τ_max,τ*3)
+            ws = ws + 1
+        
+        win.append(var)
+        while win.length>ws:
+            win.popleft()
+        current_time += τ
+    
+    return x1,y1
