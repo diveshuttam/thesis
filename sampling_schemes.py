@@ -6,7 +6,7 @@ from old_sampling_test import byte_uniform
 
 
 def periodic(x,y,a,k=100):
-    periodic.__name__ = f"periodic with {(x[-1]-x[0])/k:.1f}s"
+    periodic.__name__ = f"periodic with {(x[-1]-x[0])/k:.2f}s"
     return byte_uniform(x,y,k)
 
 
