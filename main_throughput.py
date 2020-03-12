@@ -6,7 +6,6 @@ import scipy.interpolate as interpolate
 import numpy as np
 import sampling_schemes
 from load_file import load_file
-import similaritymeasures
 from similarity import *
 import sys
 
