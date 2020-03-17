@@ -10,7 +10,7 @@ from similarity import *
 import sys
 
 def error(px,py,tx,ty):
-    return rmse(px,py,tx,ty)
+    return frechet(px,py,tx,ty)
 
 fname=sys.argv[1]
 s1=sys.argv[2]

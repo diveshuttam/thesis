@@ -91,26 +91,25 @@ def curvature(x,y,a):
         x1.append(current_time)
         y1.append(current_reading)
         print(f"appending {current_time}, {current_reading}, τ = {τ}")
-        var = current_reading-last_reading
+        # var = current_reading-last_reading
         last_reading=current_reading
         if(win_bytes.length==0):
             current_time+=τ
-            win_bytes.append(var)
+            win_bytes.append(current_reading)
             continue
         elif(win_bytes.length==1):
             current_time+=τ
-            win_bytes.append(var)
+            win_bytes.append(current_reading)
             dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
             continue
-        win_bytes.append(var)
+        win_bytes.append(current_reading)
         dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
-        tdiff = (x[-1]+x[-2])/2.0 - (x[-2]+x[-3])/2.0
+        tdiff = x1[-1]-x1[-3]
         ddwin_bytes.append((win_bytes[-1]-win_bytes[-3])/(tdiff))
-        print(ddwin_bytes)
-
         #instantaneous curvature
-        print(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+ddwin_bytes[-1])/2.0))
-        if(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+ddwin_bytes[-1])/2.0)>100000):
+        print(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0))
+        # input()
+        if(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0)>500):
             if(previous==False):
                 τ = max(τ_min,τ/3.0)
                 ws = max(3,ceil(ws))
