@@ -1,0 +1,1 @@
+-z 385008 -a 10.0.0.1  -Fs pareto0.1.ps  -Ft pareto0.1.idts -T TCP
