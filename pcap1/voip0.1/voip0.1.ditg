@@ -1,1 +1,1 @@
--z 27656 -a 10.0.0.1  -Fs voip0.1.ps  -Ft voip0.1.idts -T TCP
+-z 27656 -a 10.0.0.2  -Fs voip0.1.ps  -Ft voip0.1.idts -T UDP

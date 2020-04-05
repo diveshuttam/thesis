@@ -1,1 +1,1 @@
--z 126362 -a 10.0.0.1  -Fs poission0.2.ps  -Ft poission0.2.idts -T TCP
+-z 126362 -a 10.0.0.2  -Fs poission0.2.ps  -Ft poission0.2.idts -T UDP
