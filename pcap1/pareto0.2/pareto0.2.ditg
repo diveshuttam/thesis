@@ -1,1 +1,1 @@
--z 385714 -a 10.0.0.1  -Fs pareto0.2.ps  -Ft pareto0.2.idts -T TCP
+-z 385714 -a 10.0.0.2  -Fs pareto0.2.ps  -Ft pareto0.2.idts -T UDP
