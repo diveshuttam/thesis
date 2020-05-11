@@ -1,0 +1,246 @@
+br2_matrix2 rmse
+
+
+error|br2_matrix2|rmse|curvature|555052205.2373493|proportional|1103064113.8887758|overhead|br2_matrix2|rmse|curvature|206|proportional|82
+error|br2_matrix2|rmse|curvature|555052205.2373493|ewma|1060544656.9295597|overhead|br2_matrix2|rmse|curvature|206|ewma|81
+error|br2_matrix2|rmse|curvature|555052205.2373493|cemon|1206538536.9986968|overhead|br2_matrix2|rmse|curvature|206|cemon|77
+error|br2_matrix2|rmse|curvature|555052205.2373493|momon|698460867.7369256|overhead|br2_matrix2|rmse|curvature|206|momon|520
+error|br2_matrix2|rmse|curvature|555052205.2373493|curvature2|574059129.2778404|overhead|br2_matrix2|rmse|curvature|206|curvature2|290
+
+
+br2_poission0.1 rmse
+
+
+error|br2_poission0.1|rmse|curvature|681346821.937279|proportional|573390573.830355|overhead|br2_poission0.1|rmse|curvature|448|proportional|598
+error|br2_poission0.1|rmse|curvature|681346821.937279|ewma|568526796.5237142|overhead|br2_poission0.1|rmse|curvature|448|ewma|593
+error|br2_poission0.1|rmse|curvature|681346821.937279|cemon|1644622099.1762116|overhead|br2_poission0.1|rmse|curvature|448|cemon|84
+error|br2_poission0.1|rmse|curvature|681346821.937279|momon|598293944.7136291|overhead|br2_poission0.1|rmse|curvature|448|momon|500
+error|br2_poission0.1|rmse|curvature|681346821.937279|curvature2|965423830.5971545|overhead|br2_poission0.1|rmse|curvature|448|curvature2|276
+
+
+br2_poission0.2 rmse
+
+
+error|br2_poission0.2|rmse|curvature|659361151.3599244|proportional|558865759.0906286|overhead|br2_poission0.2|rmse|curvature|460|proportional|607
+error|br2_poission0.2|rmse|curvature|659361151.3599244|ewma|560598393.4320668|overhead|br2_poission0.2|rmse|curvature|460|ewma|606
+error|br2_poission0.2|rmse|curvature|659361151.3599244|cemon|2798796682.1719694|overhead|br2_poission0.2|rmse|curvature|460|cemon|93
+error|br2_poission0.2|rmse|curvature|659361151.3599244|momon|562663526.2410685|overhead|br2_poission0.2|rmse|curvature|460|momon|560
+error|br2_poission0.2|rmse|curvature|659361151.3599244|curvature2|1152928286.579683|overhead|br2_poission0.2|rmse|curvature|460|curvature2|252
+
+
+br2_pareto0.2 rmse
+
+
+error|br2_pareto0.2|rmse|curvature|420828152.24840474|proportional|398851901.8663679|overhead|br2_pareto0.2|rmse|curvature|448|proportional|600
+error|br2_pareto0.2|rmse|curvature|420828152.24840474|ewma|399994418.3063281|overhead|br2_pareto0.2|rmse|curvature|448|ewma|599
+error|br2_pareto0.2|rmse|curvature|420828152.24840474|cemon|381510045.0765001|overhead|br2_pareto0.2|rmse|curvature|448|cemon|78
+error|br2_pareto0.2|rmse|curvature|420828152.24840474|momon|411557026.8927744|overhead|br2_pareto0.2|rmse|curvature|448|momon|490
+error|br2_pareto0.2|rmse|curvature|420828152.24840474|curvature2|400286813.8342752|overhead|br2_pareto0.2|rmse|curvature|448|curvature2|383
+
+
+br2_pareto0.1 rmse
+
+
+error|br2_pareto0.1|rmse|curvature|422252870.2378517|proportional|407881434.4448393|overhead|br2_pareto0.1|rmse|curvature|448|proportional|600
+error|br2_pareto0.1|rmse|curvature|422252870.2378517|ewma|407881936.70991683|overhead|br2_pareto0.1|rmse|curvature|448|ewma|599
+error|br2_pareto0.1|rmse|curvature|422252870.2378517|cemon|371775076.5866239|overhead|br2_pareto0.1|rmse|curvature|448|cemon|83
+error|br2_pareto0.1|rmse|curvature|422252870.2378517|momon|412027529.6632997|overhead|br2_pareto0.1|rmse|curvature|448|momon|490
+error|br2_pareto0.1|rmse|curvature|422252870.2378517|curvature2|394219282.261497|overhead|br2_pareto0.1|rmse|curvature|448|curvature2|343
+
+
+br2_poission_slow0.2 rmse
+
+
+error|br2_poission_slow0.2|rmse|curvature|9798629.433815734|proportional|22293339.80561909|overhead|br2_poission_slow0.2|rmse|curvature|293|proportional|75
+error|br2_poission_slow0.2|rmse|curvature|9798629.433815734|ewma|19720174.13315425|overhead|br2_poission_slow0.2|rmse|curvature|293|ewma|78
+error|br2_poission_slow0.2|rmse|curvature|9798629.433815734|cemon|25224586.157180537|overhead|br2_poission_slow0.2|rmse|curvature|293|cemon|74
+error|br2_poission_slow0.2|rmse|curvature|9798629.433815734|momon|7028117.606548163|overhead|br2_poission_slow0.2|rmse|curvature|293|momon|528
+error|br2_poission_slow0.2|rmse|curvature|9798629.433815734|curvature2|12507508.80928265|overhead|br2_poission_slow0.2|rmse|curvature|293|curvature2|314
+
+
+br2_voip0.1 rmse
+
+
+error|br2_voip0.1|rmse|curvature|6271074.638392255|proportional|3640695.5589600955|overhead|br2_voip0.1|rmse|curvature|435|proportional|581
+error|br2_voip0.1|rmse|curvature|6271074.638392255|ewma|3755750.4765251633|overhead|br2_voip0.1|rmse|curvature|435|ewma|580
+error|br2_voip0.1|rmse|curvature|6271074.638392255|cemon|23587930.391172756|overhead|br2_voip0.1|rmse|curvature|435|cemon|74
+error|br2_voip0.1|rmse|curvature|6271074.638392255|momon|17086763.23103344|overhead|br2_voip0.1|rmse|curvature|435|momon|464
+error|br2_voip0.1|rmse|curvature|6271074.638392255|curvature2|13958984.878194703|overhead|br2_voip0.1|rmse|curvature|435|curvature2|293
+
+
+br2_voip0.2 rmse
+
+
+error|br2_voip0.2|rmse|curvature|6354950.72499017|proportional|3807675.2325319797|overhead|br2_voip0.2|rmse|curvature|448|proportional|598
+error|br2_voip0.2|rmse|curvature|6354950.72499017|ewma|3792846.6493878854|overhead|br2_voip0.2|rmse|curvature|448|ewma|597
+error|br2_voip0.2|rmse|curvature|6354950.72499017|cemon|20781769.803150672|overhead|br2_voip0.2|rmse|curvature|448|cemon|75
+error|br2_voip0.2|rmse|curvature|6354950.72499017|momon|16869459.757309057|overhead|br2_voip0.2|rmse|curvature|448|momon|481
+error|br2_voip0.2|rmse|curvature|6354950.72499017|curvature2|10020292.389712868|overhead|br2_voip0.2|rmse|curvature|448|curvature2|355
+
+
+poission0.1_matrix2 rmse
+
+
+error|poission0.1_matrix2|rmse|curvature|776330227.2957586|proportional|633229634.6505071|overhead|poission0.1_matrix2|rmse|curvature|471|proportional|602
+error|poission0.1_matrix2|rmse|curvature|776330227.2957586|ewma|634686722.9123445|overhead|poission0.1_matrix2|rmse|curvature|471|ewma|593
+error|poission0.1_matrix2|rmse|curvature|776330227.2957586|cemon|2278184884.520773|overhead|poission0.1_matrix2|rmse|curvature|471|cemon|84
+error|poission0.1_matrix2|rmse|curvature|776330227.2957586|momon|826169729.7884667|overhead|poission0.1_matrix2|rmse|curvature|471|momon|529
+error|poission0.1_matrix2|rmse|curvature|776330227.2957586|curvature2|2664255649.693925|overhead|poission0.1_matrix2|rmse|curvature|471|curvature2|271
+
+
+poission0.1_poission0.2 rmse
+
+
+error|poission0.1_poission0.2|rmse|curvature|959128897.7780135|proportional|799733164.7720567|overhead|poission0.1_poission0.2|rmse|curvature|471|proportional|617
+error|poission0.1_poission0.2|rmse|curvature|959128897.7780135|ewma|793472691.8660327|overhead|poission0.1_poission0.2|rmse|curvature|471|ewma|617
+error|poission0.1_poission0.2|rmse|curvature|959128897.7780135|cemon|3695205138.5414577|overhead|poission0.1_poission0.2|rmse|curvature|471|cemon|92
+error|poission0.1_poission0.2|rmse|curvature|959128897.7780135|momon|833411738.8736336|overhead|poission0.1_poission0.2|rmse|curvature|471|momon|551
+error|poission0.1_poission0.2|rmse|curvature|959128897.7780135|curvature2|2615221370.748171|overhead|poission0.1_poission0.2|rmse|curvature|471|curvature2|256
+
+
+poission0.1_pareto0.2 rmse
+
+
+error|poission0.1_pareto0.2|rmse|curvature|816857294.1381141|proportional|720165697.8102856|overhead|poission0.1_pareto0.2|rmse|curvature|460|proportional|615
+error|poission0.1_pareto0.2|rmse|curvature|816857294.1381141|ewma|727848756.6370349|overhead|poission0.1_pareto0.2|rmse|curvature|460|ewma|614
+error|poission0.1_pareto0.2|rmse|curvature|816857294.1381141|cemon|1820588223.2579246|overhead|poission0.1_pareto0.2|rmse|curvature|460|cemon|82
+error|poission0.1_pareto0.2|rmse|curvature|816857294.1381141|momon|736823626.1748364|overhead|poission0.1_pareto0.2|rmse|curvature|460|momon|496
+error|poission0.1_pareto0.2|rmse|curvature|816857294.1381141|curvature2|1507653032.2706645|overhead|poission0.1_pareto0.2|rmse|curvature|460|curvature2|297
+
+
+poission0.1_pareto0.1 rmse
+
+
+error|poission0.1_pareto0.1|rmse|curvature|909279925.0752442|proportional|802739880.2285808|overhead|poission0.1_pareto0.1|rmse|curvature|460|proportional|615
+error|poission0.1_pareto0.1|rmse|curvature|909279925.0752442|ewma|807262099.5251789|overhead|poission0.1_pareto0.1|rmse|curvature|460|ewma|614
+error|poission0.1_pareto0.1|rmse|curvature|909279925.0752442|cemon|1696396229.697112|overhead|poission0.1_pareto0.1|rmse|curvature|460|cemon|88
+error|poission0.1_pareto0.1|rmse|curvature|909279925.0752442|momon|826409847.4114213|overhead|poission0.1_pareto0.1|rmse|curvature|460|momon|496
+error|poission0.1_pareto0.1|rmse|curvature|909279925.0752442|curvature2|1187157962.5574653|overhead|poission0.1_pareto0.1|rmse|curvature|460|curvature2|294
+
+
+poission0.1_poission_slow0.2 rmse
+
+
+error|poission0.1_poission_slow0.2|rmse|curvature|703943421.3673038|proportional|575313508.9095309|overhead|poission0.1_poission_slow0.2|rmse|curvature|460|proportional|600
+error|poission0.1_poission_slow0.2|rmse|curvature|703943421.3673038|ewma|570573406.4192303|overhead|poission0.1_poission_slow0.2|rmse|curvature|460|ewma|602
+error|poission0.1_poission_slow0.2|rmse|curvature|703943421.3673038|cemon|1818643344.0925179|overhead|poission0.1_poission_slow0.2|rmse|curvature|460|cemon|88
+error|poission0.1_poission_slow0.2|rmse|curvature|703943421.3673038|momon|587547189.7095637|overhead|poission0.1_poission_slow0.2|rmse|curvature|460|momon|500
+error|poission0.1_poission_slow0.2|rmse|curvature|703943421.3673038|curvature2|964392070.0979416|overhead|poission0.1_poission_slow0.2|rmse|curvature|460|curvature2|278
+
+
+poission0.1_voip0.1 rmse
+
+
+error|poission0.1_voip0.1|rmse|curvature|703690080.6826278|proportional|575730042.5667367|overhead|poission0.1_voip0.1|rmse|curvature|460|proportional|616
+error|poission0.1_voip0.1|rmse|curvature|703690080.6826278|ewma|575730111.0550464|overhead|poission0.1_voip0.1|rmse|curvature|460|ewma|615
+error|poission0.1_voip0.1|rmse|curvature|703690080.6826278|cemon|1760310816.3424602|overhead|poission0.1_voip0.1|rmse|curvature|460|cemon|92
+error|poission0.1_voip0.1|rmse|curvature|703690080.6826278|momon|595570550.590886|overhead|poission0.1_voip0.1|rmse|curvature|460|momon|496
+error|poission0.1_voip0.1|rmse|curvature|703690080.6826278|curvature2|964784406.3626598|overhead|poission0.1_voip0.1|rmse|curvature|460|curvature2|284
+
+
+poission0.1_voip0.2 rmse
+
+
+error|poission0.1_voip0.2|rmse|curvature|704164837.3456937|proportional|571425838.9304357|overhead|poission0.1_voip0.2|rmse|curvature|460|proportional|616
+error|poission0.1_voip0.2|rmse|curvature|704164837.3456937|ewma|571448992.5455679|overhead|poission0.1_voip0.2|rmse|curvature|460|ewma|615
+error|poission0.1_voip0.2|rmse|curvature|704164837.3456937|cemon|1759532510.4966357|overhead|poission0.1_voip0.2|rmse|curvature|460|cemon|92
+error|poission0.1_voip0.2|rmse|curvature|704164837.3456937|momon|595955097.8221772|overhead|poission0.1_voip0.2|rmse|curvature|460|momon|496
+error|poission0.1_voip0.2|rmse|curvature|704164837.3456937|curvature2|964267716.6202731|overhead|poission0.1_voip0.2|rmse|curvature|460|curvature2|283
+
+
+poission0.2_matrix2 rmse
+
+
+error|poission0.2_matrix2|rmse|curvature|793477581.7297268|proportional|629576414.5378504|overhead|poission0.2_matrix2|rmse|curvature|471|proportional|607
+error|poission0.2_matrix2|rmse|curvature|793477581.7297268|ewma|632120726.778618|overhead|poission0.2_matrix2|rmse|curvature|471|ewma|606
+error|poission0.2_matrix2|rmse|curvature|793477581.7297268|cemon|2116726765.2765858|overhead|poission0.2_matrix2|rmse|curvature|471|cemon|95
+error|poission0.2_matrix2|rmse|curvature|793477581.7297268|momon|848155589.7501574|overhead|poission0.2_matrix2|rmse|curvature|471|momon|551
+error|poission0.2_matrix2|rmse|curvature|793477581.7297268|curvature2|1384791751.36966|overhead|poission0.2_matrix2|rmse|curvature|471|curvature2|260
+
+
+poission0.2_pareto0.2 rmse
+
+
+error|poission0.2_pareto0.2|rmse|curvature|813857638.0988798|proportional|706702812.2948848|overhead|poission0.2_pareto0.2|rmse|curvature|460|proportional|607
+error|poission0.2_pareto0.2|rmse|curvature|813857638.0988798|ewma|709300796.2561325|overhead|poission0.2_pareto0.2|rmse|curvature|460|ewma|606
+error|poission0.2_pareto0.2|rmse|curvature|813857638.0988798|cemon|3681797843.0294724|overhead|poission0.2_pareto0.2|rmse|curvature|460|cemon|93
+error|poission0.2_pareto0.2|rmse|curvature|813857638.0988798|momon|714376804.4131349|overhead|poission0.2_pareto0.2|rmse|curvature|460|momon|560
+error|poission0.2_pareto0.2|rmse|curvature|813857638.0988798|curvature2|3862592758.6263633|overhead|poission0.2_pareto0.2|rmse|curvature|460|curvature2|295
+
+
+poission0.2_pareto0.1 rmse
+
+
+error|poission0.2_pareto0.1|rmse|curvature|825807863.2511007|proportional|717375327.4810506|overhead|poission0.2_pareto0.1|rmse|curvature|460|proportional|607
+error|poission0.2_pareto0.1|rmse|curvature|825807863.2511007|ewma|720080188.8118194|overhead|poission0.2_pareto0.1|rmse|curvature|460|ewma|606
+error|poission0.2_pareto0.1|rmse|curvature|825807863.2511007|cemon|3695694536.992903|overhead|poission0.2_pareto0.1|rmse|curvature|460|cemon|95
+error|poission0.2_pareto0.1|rmse|curvature|825807863.2511007|momon|731422450.9916891|overhead|poission0.2_pareto0.1|rmse|curvature|460|momon|560
+error|poission0.2_pareto0.1|rmse|curvature|825807863.2511007|curvature2|1051400456.8891276|overhead|poission0.2_pareto0.1|rmse|curvature|460|curvature2|295
+
+
+poission0.2_poission_slow0.2 rmse
+
+
+error|poission0.2_poission_slow0.2|rmse|curvature|662100350.8907661|proportional|556573448.9524938|overhead|poission0.2_poission_slow0.2|rmse|curvature|462|proportional|607
+error|poission0.2_poission_slow0.2|rmse|curvature|662100350.8907661|ewma|558305132.4682809|overhead|poission0.2_poission_slow0.2|rmse|curvature|462|ewma|606
+error|poission0.2_poission_slow0.2|rmse|curvature|662100350.8907661|cemon|2797025084.381887|overhead|poission0.2_poission_slow0.2|rmse|curvature|462|cemon|93
+error|poission0.2_poission_slow0.2|rmse|curvature|662100350.8907661|momon|561130719.1725994|overhead|poission0.2_poission_slow0.2|rmse|curvature|462|momon|560
+error|poission0.2_poission_slow0.2|rmse|curvature|662100350.8907661|curvature2|1056505281.368518|overhead|poission0.2_poission_slow0.2|rmse|curvature|462|curvature2|257
+
+
+poission0.2_voip0.1 rmse
+
+
+error|poission0.2_voip0.1|rmse|curvature|659490127.7980664|proportional|557173258.9586579|overhead|poission0.2_voip0.1|rmse|curvature|460|proportional|607
+error|poission0.2_voip0.1|rmse|curvature|659490127.7980664|ewma|558901098.6116551|overhead|poission0.2_voip0.1|rmse|curvature|460|ewma|606
+error|poission0.2_voip0.1|rmse|curvature|659490127.7980664|cemon|2797332688.5899835|overhead|poission0.2_voip0.1|rmse|curvature|460|cemon|93
+error|poission0.2_voip0.1|rmse|curvature|659490127.7980664|momon|561520273.6847316|overhead|poission0.2_voip0.1|rmse|curvature|460|momon|560
+error|poission0.2_voip0.1|rmse|curvature|659490127.7980664|curvature2|1334716391.9384744|overhead|poission0.2_voip0.1|rmse|curvature|460|curvature2|257
+
+
+poission0.2_voip0.2 rmse
+
+
+error|poission0.2_voip0.2|rmse|curvature|659960044.5053967|proportional|557067729.1927807|overhead|poission0.2_voip0.2|rmse|curvature|460|proportional|607
+error|poission0.2_voip0.2|rmse|curvature|659960044.5053967|ewma|558701814.7453516|overhead|poission0.2_voip0.2|rmse|curvature|460|ewma|606
+error|poission0.2_voip0.2|rmse|curvature|659960044.5053967|cemon|2811510564.7465625|overhead|poission0.2_voip0.2|rmse|curvature|460|cemon|93
+error|poission0.2_voip0.2|rmse|curvature|659960044.5053967|momon|561653447.7163032|overhead|poission0.2_voip0.2|rmse|curvature|460|momon|560
+error|poission0.2_voip0.2|rmse|curvature|659960044.5053967|curvature2|1058780035.4468856|overhead|poission0.2_voip0.2|rmse|curvature|460|curvature2|257
+
+
+pareto0.1_matrix2 rmse
+
+
+error|pareto0.1_matrix2|rmse|curvature|606583385.1223242|proportional|497774136.0929935|overhead|pareto0.1_matrix2|rmse|curvature|459|proportional|604
+error|pareto0.1_matrix2|rmse|curvature|606583385.1223242|ewma|497223313.3585969|overhead|pareto0.1_matrix2|rmse|curvature|459|ewma|604
+error|pareto0.1_matrix2|rmse|curvature|606583385.1223242|cemon|1901336471.0367103|overhead|pareto0.1_matrix2|rmse|curvature|459|cemon|85
+error|pareto0.1_matrix2|rmse|curvature|606583385.1223242|momon|717436604.2817793|overhead|pareto0.1_matrix2|rmse|curvature|459|momon|529
+error|pareto0.1_matrix2|rmse|curvature|606583385.1223242|curvature2|699956033.1795214|overhead|pareto0.1_matrix2|rmse|curvature|459|curvature2|304
+
+
+pareto0.1_pareto0.2 rmse
+
+
+error|pareto0.1_pareto0.2|rmse|curvature|673001824.5629505|proportional|637951809.2258084|overhead|pareto0.1_pareto0.2|rmse|curvature|448|proportional|600
+error|pareto0.1_pareto0.2|rmse|curvature|673001824.5629505|ewma|637952350.8422798|overhead|pareto0.1_pareto0.2|rmse|curvature|448|ewma|599
+error|pareto0.1_pareto0.2|rmse|curvature|673001824.5629505|cemon|612119044.6297643|overhead|pareto0.1_pareto0.2|rmse|curvature|448|cemon|85
+error|pareto0.1_pareto0.2|rmse|curvature|673001824.5629505|momon|642704938.2614341|overhead|pareto0.1_pareto0.2|rmse|curvature|448|momon|490
+error|pareto0.1_pareto0.2|rmse|curvature|673001824.5629505|curvature2|639964346.2160705|overhead|pareto0.1_pareto0.2|rmse|curvature|448|curvature2|354
+
+
+pareto0.1_poission_slow0.2 rmse
+
+
+error|pareto0.1_poission_slow0.2|rmse|curvature|421478471.74076587|proportional|408094377.29266614|overhead|pareto0.1_poission_slow0.2|rmse|curvature|450|proportional|600
+error|pareto0.1_poission_slow0.2|rmse|curvature|421478471.74076587|ewma|408094821.7312936|overhead|pareto0.1_poission_slow0.2|rmse|curvature|450|ewma|599
+error|pareto0.1_poission_slow0.2|rmse|curvature|421478471.74076587|cemon|372328189.0889299|overhead|pareto0.1_poission_slow0.2|rmse|curvature|450|cemon|83
+error|pareto0.1_poission_slow0.2|rmse|curvature|421478471.74076587|momon|410458769.7301586|overhead|pareto0.1_poission_slow0.2|rmse|curvature|450|momon|491
+error|pareto0.1_poission_slow0.2|rmse|curvature|421478471.74076587|curvature2|416339352.8549687|overhead|pareto0.1_poission_slow0.2|rmse|curvature|450|curvature2|357
+
+
+pareto0.1_voip0.1 rmse
+
+
+error|pareto0.1_voip0.1|rmse|curvature|422080050.19056094|proportional|408091730.1797236|overhead|pareto0.1_voip0.1|rmse|curvature|448|proportional|600
+error|pareto0.1_voip0.1|rmse|curvature|422080050.19056094|ewma|408111319.23080117|overhead|pareto0.1_voip0.1|rmse|curvature|448|ewma|599
+error|pareto0.1_voip0.1|rmse|curvature|422080050.19056094|cemon|372578201.72395915|overhead|pareto0.1_voip0.1|rmse|curvature|448|cemon|83

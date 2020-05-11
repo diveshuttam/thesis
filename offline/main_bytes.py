@@ -83,5 +83,15 @@ plt.suptitle(f"error green ({sampling_scheme1.__name__}): {error1} | overhead ({
 plt.legend(loc="upper left")
 plt.savefig(path)
 # print("done",sys.argv)
-print("error",fname, sys.argv[2], s1, error1, s2, error2, sep="|")
+print("\n")
+print("error",fname, sys.argv[2], s1, error1, s2, error2, sep="|", end="|")
 print("overhead",fname,  sys.argv[2], s1, overhead1, s2, overhead2, sep="|")
+
+
+print(f"\n{s1} polls")
+temp = list(map(lambda x: (x[0],x[1]), list(zip(x1,y1))))
+print(*temp, sep="\n")
+
+print(f"\n{s2} polls")
+temp = list(map(lambda x: (x[0],x[1]), list(zip(x2,y2))))
+print(*temp, sep="\n")

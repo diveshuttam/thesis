@@ -9,8 +9,8 @@ def periodic(x,y,a,k=100):
     periodic.__name__ = f"periodic with {(x[-1]-x[0])/k:.2f}s"
     return byte_uniform(x,y,k)
 
-def print(*args, **kwargs):
-    pass
+# def print(*args, **kwargs):
+#     pass
 
 class window(deque):
     @property
@@ -32,6 +32,7 @@ class window(deque):
         return len(self)
 
 def cemon(x,y,a):
+    print("Cemon:")
     x1,y1 = [],[]
     poller = a
 
@@ -49,10 +50,11 @@ def cemon(x,y,a):
         current_reading = poller(current_time)
         x1.append(current_time)
         y1.append(current_reading)
-        print(f"appending {current_time}, {current_reading}, τ = {τ}")
+        print(f"{current_time}, {current_reading}, {τ}, ", end='')
         var = current_reading-last_reading
         last_reading=current_reading
         if(win.length<3):
+            print(f'same, {τ}')
             current_time+=τ
             win.append(var)
             continue
@@ -60,9 +62,11 @@ def cemon(x,y,a):
         if(var>win.mean + 2*win.stdev or var<(win.mean - 2*win.stdev)):
             τ = max(τ_min,τ/2)
             ws = max(3,ceil(ws/2))
+            print(f"double polling, {τ}")
         else:
             τ = min(τ_max,τ*2)
             ws = ws + 1
+            print(f"halfing polling, {τ}")
 
         win.append(var)
         while win.length>ws:
@@ -73,6 +77,7 @@ def cemon(x,y,a):
 
 
 def curvature(x,y,a):
+    print("Curvature:")
     x1,y1 = [],[]
     poller = a
 
@@ -92,32 +97,38 @@ def curvature(x,y,a):
         current_reading = poller(current_time)
         x1.append(current_time)
         y1.append(current_reading)
-        print(f"appending {current_time}, {current_reading}, τ = {τ}")
+        print(f"{current_time}, {current_reading}, {τ}, ", end='')
         # var = current_reading-last_reading
         last_reading=current_reading
         if(win_bytes.length==0):
             current_time+=τ
             win_bytes.append(current_reading)
+            print(f'same, {τ}')
             continue
         elif(win_bytes.length==1):
             current_time+=τ
             win_bytes.append(current_reading)
             dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
+            print(f'same, {τ}')
             continue
         win_bytes.append(current_reading)
         dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
         tdiff = x1[-1]-x1[-3]
         ddwin_bytes.append((win_bytes[-1]-win_bytes[-3])/(tdiff))
         #instantaneous curvature
-        print(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0))
+        # print(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0))
         # input()
         if(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0)>500):
             if(previous==False):
                 τ = max(τ_min,τ/3.0)
                 ws = max(3,ceil(ws))
+                print(f"tripling polling, {τ}")
                 previous=True
+            else:
+                print(f'same_p, {τ}')
         else:
             τ = min(τ_max,τ*2)
+            print(f"halfing polling, {τ}")
             ws = ws + 1
             previous=False
 
