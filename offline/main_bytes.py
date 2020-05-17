@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from __future__ import print_function
+
 import numpy
 import os
 import matplotlib.pyplot as plt
@@ -9,6 +11,10 @@ from load_file import load_file
 from similarity import *
 import sys
 
+import sys
+
+
+
 
 # print("./main_bytes.py voip0.1 cemon cemon 1 1")
 fname=sys.argv[1]
@@ -18,6 +24,11 @@ s2=sys.argv[4]
 p1= lambda : eval(sys.argv[5])
 p2= lambda : eval(sys.argv[6])
 path = sys.argv[7]
+error_path = sys.argv[8]
+error_file = open(error_path,"a")
+
+def eprint(*args, **kwargs):
+    print(*args, file=error_file, **kwargs)
 
 error = eval(sys.argv[2])
 
@@ -83,9 +94,9 @@ plt.suptitle(f"error green ({sampling_scheme1.__name__}): {error1} | overhead ({
 plt.legend(loc="upper left")
 plt.savefig(path)
 # print("done",sys.argv)
-print("\n")
-print("error",fname, sys.argv[2], s1, error1, s2, error2, sep="|", end="|")
-print("overhead",fname,  sys.argv[2], s1, overhead1, s2, overhead2, sep="|")
+eprint("\n")
+eprint("error",fname, sys.argv[2], s1, error1, s2, error2, sep="|", end="|")
+eprint("overhead",fname,  sys.argv[2], s1, overhead1, s2, overhead2, sep="|")
 
 
 print(f"\n{s1} polls")

@@ -1,1 +1,1 @@
--z 10134 -a 10.0.0.1  -Fs matrix2.ps  -Ft matrix2.idts -T TCP
+-z 100 -a 10.0.0.2  -Fs matrix2.ps  -Ft matrix2.idts -T TCP
