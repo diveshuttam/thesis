@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "./main_bytes.py", line 57, in <module>
+    a1 = interpolate.interp1d(x1,y1,"linear")
+  File "/home/mininet/.local/lib/python3.6/site-packages/scipy/interpolate/interpolate.py", line 541, in __init__
+    "least %d entries" % minval)
+ValueError: x and y arrays must have at least 2 entries
