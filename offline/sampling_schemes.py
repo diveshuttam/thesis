@@ -119,6 +119,7 @@ def curvature(x,y,a):
         # print(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0))
         # input()
         if(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0)>500):
+            print("increase", dwin_bytes[-2], dwin_bytes[-1], ddwin_bytes[-1])
             if(previous==False):
                 τ = max(τ_min,τ/3.0)
                 ws = max(3,ceil(ws))
@@ -127,6 +128,7 @@ def curvature(x,y,a):
             else:
                 print(f'same_p, {τ}')
         else:
+            print("decrease", dwin_bytes[-2], dwin_bytes[-1], ddwin_bytes[-1])
             τ = min(τ_max,τ*2)
             print(f"halfing polling, {τ}")
             ws = ws + 1
@@ -229,16 +231,16 @@ def momon(x,y,a):
             win.append(var)
             continue
 
-        if(abs(var)/(last_reading+1)<0.2):
+        if(abs(var)/((last_reading+current_reading)/2.0)<0.2):
             τ = max(τ_min,τ/2)
-            ws = max(3,ceil(ws/2))
+            # ws = max(3,ceil(ws/2))
         else:
             τ = min(τ_max,τ*3)
-            ws = ws + 1
+            # ws = ws + 1
 
         win.append(var)
-        while win.length>ws:
-            win.popleft()
+        # while win.length>ws:
+            # win.popleft()
         current_time += τ
 
     return x1,y1
