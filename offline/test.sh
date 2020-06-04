@@ -10,12 +10,12 @@ do
     xp=$(basename $(dirname $f))
     output_dir="$output/lbnl/$xp/$x"
     # [ -f $output_dir ] && continue || mkdir -p $output_dir 
-    [ -f $output_dir/done_momon1 ] && continue 
+    [ -f $output_dir/done_cemon1 ] && continue 
     # cp $f $output_dir/$x.pcap 
     echo working on $output_dir 
-    ./single.sh "$output_dir/$x.pcap" rmse "$output/error_momon.csv" > "$output_dir/$x_momon.csv" 2>test_errors_momon 
+    ./single.sh "$output_dir/$x.pcap" rmse "$output/error_cemon_uti.csv" > "$output_dir/"$x"_cemon_uti.csv" 2>test_errors_cemon_uti
+    [ "$?" -eq "0" ] && touch $output_dir/done_cemon1
     echo $?, $f
-    [ "$?" -eq "0" ] && touch $output_dir/done_momon1
     # read a
 done;
 # rmse

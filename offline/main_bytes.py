@@ -41,10 +41,9 @@ arr = load_file(fname)
 x,y = map(list,zip(*arr))
 x = list(map(lambda zz:zz.timestamp(), x))
 n = len(x)*2
-a = interpolate.interp1d(x,y,'previous')
+a = interpolate.interp1d(x,y,'previous', fill_value="extrapolate")
 xc=np.linspace(x[0],x[-1],n)
-targets = yc = a(xc)
-
+targets = yc = a(xc+1) - a(xc)
 
 # sampling1
 sampling_scheme1 = eval(f"sampling_schemes.{s1}")
@@ -57,7 +56,7 @@ else:
 a1 = interpolate.interp1d(x1,y1,"linear")
 x1c = np.linspace(x1[0],x1[-1],n)
 predictions1 = y1c = a1(x1c)
-error1 = error(x1,y1,x,y)
+error1 = error(x1c,y1c,xc,yc)
 overhead1 = len(x1)
 
 # sampling2
@@ -71,8 +70,10 @@ else:
 a2 = interpolate.interp1d(x2,y2,"linear")
 x2c = np.linspace(x2[0],x2[-1],n)
 predictions2 = y2c = a2(x2c)
-error2 = error(x2,y2,x,y)
+error2 = error(x2c,y2c,xc,yc)
 overhead2 = len(x2)
+
+
 
 # plot actual
 if(display_actual):
