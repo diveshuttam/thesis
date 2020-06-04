@@ -33,7 +33,7 @@ class window(deque):
 
 def cemon(x,y,a):
     print("Cemon:")
-    x1,y1 = [],[]
+    x1,y1,z1 = [],[],[]
     poller = a
 
     # initial variables
@@ -50,6 +50,12 @@ def cemon(x,y,a):
         current_reading = poller(current_time)
         x1.append(current_time)
         y1.append(current_reading)
+        try:
+            current_utiliazation = poller(current_time+1) - current_reading
+            z1.append(current_utiliazation)    
+        except:
+            print("breaking")
+            break
         print(f"{current_time}, {current_reading}, {τ}, ", end='')
         var = current_reading-last_reading
         last_reading=current_reading
@@ -73,12 +79,12 @@ def cemon(x,y,a):
             win.popleft()
         current_time += τ
 
-    return x1,y1
+    return x1,z1
 
 
 def curvature(x,y,a):
     print("Curvature:")
-    x1,y1 = [],[]
+    x1,y1,z1 = [],[],[]
     poller = a
 
     # initial variables
@@ -97,6 +103,12 @@ def curvature(x,y,a):
         current_reading = poller(current_time)
         x1.append(current_time)
         y1.append(current_reading)
+        try:
+            current_utiliazation = poller(current_time+1) - current_reading
+            z1.append(current_utiliazation)    
+        except:
+            print("breaking")
+            break
         print(f"{current_time}, {current_reading}, {τ}, ", end='')
         # var = current_reading-last_reading
         last_reading=current_reading
@@ -140,7 +152,7 @@ def curvature(x,y,a):
             dwin_bytes.popleft()
         current_time += τ
 
-    return x1,y1
+    return x1,z1
 
 def curvature2(x,y,a):
     x1,y1 = [],[]
@@ -206,7 +218,7 @@ def curvature2(x,y,a):
 
 
 def momon(x,y,a):
-    x1,y1 = [],[]
+    x1,y1,z1 = [],[],[]
     poller = a
 
     # initial variables
@@ -221,7 +233,10 @@ def momon(x,y,a):
     current_reading=0
     while(current_time < x[-1]):
         last_reading=current_reading
-        current_reading = poller(current_time)
+        try:
+            current_reading = poller(current_time+1)-poller(current_time)
+        except:
+            print("breaing")
         x1.append(current_time)
         y1.append(current_reading)
         print(f"appending {current_time}, {current_reading}, τ = {τ}")
