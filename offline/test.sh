@@ -4,17 +4,17 @@
 output="../output"
 # rm -i $output/error.csv
 # set -e
-for f in ../pcap/lbnl/*/*.cap;
+for f in ../lbnl/*/*.pcap;
 do
-    x=$(basename $f .cap)
+    x=$(basename $f .pcap)
     xp=$(basename $(dirname $f))
-    output_dir="$output/lbnl/$xp/$x"
+    output_dir="$output/lbnl/$x"
     # [ -f $output_dir ] && continue || mkdir -p $output_dir 
-    [ -f $output_dir/done_cemon1 ] && continue 
+    # [ -f $output_dir/done_cemon_uti ] && continue 
     # cp $f $output_dir/$x.pcap 
     echo working on $output_dir 
     ./single.sh "$output_dir/$x.pcap" rmse "$output/error_cemon_uti.csv" > "$output_dir/"$x"_cemon_uti.csv" 2>test_errors_cemon_uti
-    [ "$?" -eq "0" ] && touch $output_dir/done_cemon1
+    [ "$?" -eq "0" ] && touch $output_dir/done_cemon_uti
     echo $?, $f
     # read a
 done;
