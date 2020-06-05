@@ -44,13 +44,15 @@ n = len(x)*2
 a = interpolate.interp1d(x,y,'previous', fill_value="extrapolate")
 xc=np.linspace(x[0],x[-1],n)
 targets = yc = a(xc+1) - a(xc)
-
+utilization_poller = interpolate.interp1d(xc,yc)
 # sampling1
 sampling_scheme1 = eval(f"sampling_schemes.{s1}")
 if(s1=="periodic"):
     x1,y1 = map(list,sampling_scheme1(x,y,a,p1()))
+    y1 = utilization_poller(x1)
 else:
     x1,y1 = map(list,sampling_scheme1(x,y,a))
+    y1 = utilization_poller(x1)
 # print(len(x1),len(y1))
 
 a1 = interpolate.interp1d(x1,y1,"linear")
@@ -63,8 +65,10 @@ overhead1 = len(x1)
 sampling_scheme2 =  eval(f"sampling_schemes.{s2}")
 if(s2=="periodic"):
     x2,y2 = map(list,sampling_scheme2(x,y,a,p2()))
+    y2 = utilization_poller(x2)
 else:
     x2,y2 = map(list,sampling_scheme2(x,y,a))
+    y2 = utilization_poller(x2)
 # print(len(x2),len(y2))
 
 a2 = interpolate.interp1d(x2,y2,"linear")
@@ -72,8 +76,6 @@ x2c = np.linspace(x2[0],x2[-1],n)
 predictions2 = y2c = a2(x2c)
 error2 = error(x2c,y2c,xc,yc)
 overhead2 = len(x2)
-
-
 
 # plot actual
 if(display_actual):
