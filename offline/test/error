@@ -10,3 +10,6 @@ error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|cemon|1.4
 
 
 error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|0.2426345023827152|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|103
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|0.2426345023827152|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|103
