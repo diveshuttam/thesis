@@ -43,7 +43,7 @@ x = list(map(lambda zz:zz.timestamp(), x))
 n = len(x)*2
 a = interpolate.interp1d(x,y,'previous', fill_value="extrapolate")
 xc=np.linspace(x[0],x[-1],n)
-targets = yc = a(xc+1) - a(xc)
+targets = yc = a(xc+1.0) - a(xc)
 utilization_poller = interpolate.interp1d(xc,yc)
 # sampling1
 sampling_scheme1 = eval(f"sampling_schemes.{s1}")
