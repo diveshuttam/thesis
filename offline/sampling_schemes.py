@@ -233,32 +233,38 @@ def momon(x,y,a):
     current_reading=0
     while(current_time < x[-1]):
         last_reading=current_reading
-        try:
-            current_reading = poller(current_time+1)-poller(current_time)
-        except:
-            print("breaing")
+        current_reading = poller(current_time)
         x1.append(current_time)
         y1.append(current_reading)
         print(f"appending {current_time}, {current_reading}, τ = {τ}")
-        var = current_reading-last_reading
-        if(win.length<3):
-            current_time+=τ
-            win.append(var)
+        try:
+            utilization = poller(current_time+1) - poller(current_time)
+        except:
+            break
+        z1.append(utilization)
+        if(len(z1)<2):
             continue
-
-        if(abs(var)/((last_reading+current_reading)/2.0)<0.2):
+        un = z1[-1]
+        un_1 = z1[-2]
+        dn = abs((un-un_1)/((un+un_1)/2.0))
+        if(win.length<2):
+            current_time+=τ
+            win.append(dn)
+            continue
+        win.append(utilization)
+        if(win[-1]-win[-2]<0.2):
             τ = max(τ_min,τ/2)
             # ws = max(3,ceil(ws/2))
         else:
             τ = min(τ_max,τ*3)
             # ws = ws + 1
 
-        win.append(var)
+        # win.append(utilization)
         # while win.length>ws:
             # win.popleft()
         current_time += τ
 
-    return x1,y1
+    return x1,z1
 
 
 def proportional(x,y,a):
