@@ -10,3 +10,33 @@ error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|cemon|1.4
 
 
 error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|0.2426345023827152|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|103
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|0.2426345023827152|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|103
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|0.2426345023827152|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|103
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|0.2426345023827152|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|103
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|0.2426345023827152|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|103
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.0|momon|0.0|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|94
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.0|momon|0.0|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|103
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|2.0395294128467705|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|94
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|2.0395294128467705|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|94
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|2.0395294128467705|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|94
+
+
+error|./test/stream-1/stream-1.pcap|rmse|curvature|0.29675982359056063|momon|1.9807270703903501|overhead|./test/stream-1/stream-1.pcap|rmse|curvature|14|momon|14

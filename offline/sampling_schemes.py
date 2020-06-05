@@ -243,6 +243,7 @@ def momon(x,y,a):
             break
         z1.append(utilization)
         if(len(z1)<2):
+            current_time+=τ
             continue
         un = z1[-1]
         un_1 = z1[-2]
@@ -252,7 +253,7 @@ def momon(x,y,a):
             win.append(dn)
             continue
         win.append(utilization)
-        if(win[-1]-win[-2]<0.2):
+        if(abs(win[-1]-win[-2])>0.2):
             τ = max(τ_min,τ/2)
             # ws = max(3,ceil(ws/2))
         else:
