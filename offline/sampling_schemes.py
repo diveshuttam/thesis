@@ -130,7 +130,7 @@ def curvature(x,y,a):
         #instantaneous curvature
         # print(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0))
         # input()
-        if(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0)>500):
+        if(abs(dwin_bytes[-2]-dwin_bytes[-1])>6300):
             print("increase", dwin_bytes[-2], dwin_bytes[-1], ddwin_bytes[-1])
             if(previous==False):
                 τ = max(τ_min,τ/3.0)
