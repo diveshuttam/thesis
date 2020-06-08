@@ -11,12 +11,6 @@ from load_file import load_file
 from similarity import *
 import sys
 
-import sys
-
-
-
-
-# print("./main_bytes.py voip0.1 cemon cemon 1 1")
 fname=sys.argv[1]
 s1=sys.argv[3]
 s2=sys.argv[4]
@@ -40,19 +34,17 @@ display_plot2 = True
 arr = load_file(fname)
 x,y = map(list,zip(*arr))
 x = list(map(lambda zz:zz.timestamp(), x))
-n = len(x)*2
-a = interpolate.interp1d(x,y,'previous', fill_value="extrapolate")
+n = int((x[-1]-x[0])*2)
+bytes_poller = interpolate.interp1d(x,y,'previous', fill_value=(0,y[-1]), bounds_error=False)
 xc=np.linspace(x[0],x[-1],n)
-targets = yc = a(xc+1.0) - a(xc)
+targets = yc = bytes_poller(xc) - bytes_poller(xc-1.0)
 utilization_poller = interpolate.interp1d(xc,yc)
 # sampling1
 sampling_scheme1 = eval(f"sampling_schemes.{s1}")
 if(s1=="periodic"):
-    x1,y1 = map(list,sampling_scheme1(x,y,a,p1()))
-    y1 = utilization_poller(x1)
+    x1,y1 = map(list,sampling_scheme1(x,y,bytes_poller,p1(),utilization_poller))
 else:
-    x1,y1 = map(list,sampling_scheme1(x,y,a))
-    y1 = utilization_poller(x1)
+    x1,y1 = map(list,sampling_scheme1(x,y,bytes_poller,utilization_poller))
 # print(len(x1),len(y1))
 
 a1 = interpolate.interp1d(x1,y1,"linear")
@@ -64,11 +56,9 @@ overhead1 = len(x1)
 # sampling2
 sampling_scheme2 =  eval(f"sampling_schemes.{s2}")
 if(s2=="periodic"):
-    x2,y2 = map(list,sampling_scheme2(x,y,a,p2()))
-    y2 = utilization_poller(x2)
+    x2,y2 = map(list,sampling_scheme2(x,y,bytes_poller,p2(),utilization_poller))
 else:
-    x2,y2 = map(list,sampling_scheme2(x,y,a))
-    y2 = utilization_poller(x2)
+    x2,y2 = map(list,sampling_scheme2(x,y,bytes_poller, utilization_poller))
 # print(len(x2),len(y2))
 
 a2 = interpolate.interp1d(x2,y2,"linear")
@@ -80,6 +70,7 @@ overhead2 = len(x2)
 # plot actual
 if(display_actual):
     plt.plot(xc,yc,'r',label='actual data (interpolated)',markersize=1)
+    # plt.plot(xc,yc,'co',label='actual data',markersize=1)
 
 # plot 1
 if(display_plot1):
