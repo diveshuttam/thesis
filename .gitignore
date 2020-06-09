@@ -1,6 +1,6 @@
 pcap/
 **/__pycache__/
-output/
+output/lbnl/
 output.zip
 lbnl-traces/
 venv/
