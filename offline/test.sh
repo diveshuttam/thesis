@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 output="../output"
 # rm -i $output/error.csv
 # set -e
