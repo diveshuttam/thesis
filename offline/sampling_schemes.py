@@ -31,15 +31,15 @@ class window(deque):
     def length(self):
         return len(self)
 
-def cemon(x,y,bytes_poller,utilization_poller):
+def cemon(x,y,bytes_poller,utilization_poller, tmin, tmax, param):
     print("Cemon:")
     x1,y1,z1 = [],[],[]
 
     # initial variables
     current_time = x[0]
     τ = 1.0
-    τ_max = 5.0
-    τ_min = 0.5
+    τ_max = tmax
+    τ_min = tmin
     last_bytes = 0
     win = window([])
     ws = 3
@@ -83,15 +83,15 @@ def cemon(x,y,bytes_poller,utilization_poller):
     return x1,z1
 
 
-def curvature(x,y,bytes_poller, utilization_poller):
+def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
     print("Curvature:")
     x1,y1,z1 = [],[],[]
     
     # initial variables
     current_time = x[0]
     τ = 1.0
-    τ_max = 5.0
-    τ_min = 0.5
+    τ_max = tmax
+    τ_min = tmin
     last_bytes = 0
     win_bytes = window([])
     dwin_bytes = window([])
@@ -130,7 +130,7 @@ def curvature(x,y,bytes_poller, utilization_poller):
         #instantaneous curvature
         # print(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0))
         # input()
-        if(abs(dwin_bytes[-2]-dwin_bytes[-1])>6300):
+        if(abs(dwin_bytes[-2]-dwin_bytes[-1])>param):
             print("increase", dwin_bytes[-2], dwin_bytes[-1], ddwin_bytes[-1])
             if(previous==False):
                 τ = max(τ_min,τ/3.0)
@@ -219,13 +219,13 @@ def curvature(x,y,bytes_poller, utilization_poller):
 #     return x1,y1
 
 
-def momon(x,y,bytes_poller, utilization_poller):
+def momon(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
     x1,y1,z1 = [],[],[]
     # initial variables
     current_time = x[0]
     τ = 1.0
-    τ_max = 5.0
-    τ_min = 0.5
+    τ_max = tmax
+    τ_min = tmin
     last_bytes = 0
     win = window([])
     ws = 3
@@ -247,7 +247,10 @@ def momon(x,y,bytes_poller, utilization_poller):
             continue
         un = z1[-1]
         un_1 = z1[-2]
-        dn = abs((un-un_1)/((un+un_1)/2.0))
+        if (un+un_1!=0):
+            dn = abs((un-un_1)/((un+un_1)/2.0))
+        else:
+            dn = 0
         if(win.length<2):
             current_time+=τ
             win.append(dn)

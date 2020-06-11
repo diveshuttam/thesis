@@ -1,20 +1,21 @@
 #!/bin/bash
-
-output="../output"
 # rm -i $output/error.csv
 # set -e
-for f in ../lbnl/*/*.pcap;
+for f in ../output/chosen_traffics/**/*.pcap;
 do
     x=$(basename $f .pcap)
-    xp=$(basename $(dirname $f))
-    output_dir="$output/lbnl/$x"
-    # [ -f $output_dir ] && continue || mkdir -p $output_dir 
-    # [ -f $output_dir/done_cemon_uti ] && continue 
-    # cp $f $output_dir/$x.pcap 
+    output_dir=$(dirname $f)
+    echo $x $output_dir
+    # [ -f $output_dir/done_momon_uti ] && continue 
+    [ -f $output_dir/graphs ] || mkdir -p "$output_dir/graphs" 
+    [ -f $output_dir/csvs ] || mkdir -p "$output_dir/csvs" 
     echo working on $output_dir 
-    ./single.sh "$output_dir/$x.pcap" rmse "$output/error_cemon_uti.csv" > "$output_dir/"$x"_cemon_uti.csv" 2>test_errors_cemon_uti
-    [ "$?" -eq "0" ] && touch $output_dir/done_cemon_uti
-    echo $?, $f
+    # read a
+    ./single.sh "$output_dir/$x.pcap" rmse "../output/chosen_traffics/error_curv_momon_uti_with_param.csv" > "$output_dir/csvs/momon_uti.csv" 2>>test_errors_momon_uti
+    status=$?
+    echo $status, $f
+    [ "$status" -eq "0" ] && touch $output_dir/done_momon_uti
+    
     # read a
 done;
 # rmse
