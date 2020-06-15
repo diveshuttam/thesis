@@ -10,7 +10,7 @@ echo -e "\n"
 # ./main_bytes.py $traffic $error curvature proportional 61 61 graphs/traffic_${traffic}/${error}/curvature_vs_proportional 
 # ./main_bytes.py $traffic $error curvature ewma 61 61 graphs/traffic_${traffic}/${error}/curvature_vs_ewma
 x=$(dirname $traffic)
-./main_bytes.py $traffic $error curvature momon 61 61 "$x/graphs/curvature_vs_momon_uti" $error_file
+./main_bytes.py $traffic $error curvature momon 61 61 "$x/graphs/curvature_vs_momon_uti_fine" $error_file
 # echo ./main_bytes.py $traffic $error curvature cemon 61 61 "$(dirname $traffic)/${error}-curvature_vs_cemon_uti" $error_file
 
 # ./main_bytes.py $traffic $error curvature momon 61 61 graphs/traffic_${traffic}/${error}/curvature_vs_momon

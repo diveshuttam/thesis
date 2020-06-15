@@ -109,8 +109,8 @@ def calc(tmin, tmax, param):
     plt.close()
 
 tmin = 0.5
-tmax = [3.0,5.0]
-params = list(range(500,7500+1,500))
+tmax = [3.0, 5.0]
+params = [500, 700]
 for t in tmax:
     for p in params:
         print("here")
