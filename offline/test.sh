@@ -6,15 +6,15 @@ do
     x=$(basename $f .pcap)
     output_dir=$(dirname $f)
     echo $x $output_dir
-    # [ -f $output_dir/done_momon_uti ] && continue 
+    [ -f $output_dir/done_momon_uti_fine ] && continue 
     [ -f $output_dir/graphs ] || mkdir -p "$output_dir/graphs" 
     [ -f $output_dir/csvs ] || mkdir -p "$output_dir/csvs" 
     echo working on $output_dir 
     # read a
-    ./single.sh "$output_dir/$x.pcap" rmse "../output/chosen_traffics/error_curv_momon_uti_with_param.csv" > "$output_dir/csvs/momon_uti.csv" 2>>test_errors_momon_uti
+    ./single.sh "$output_dir/$x.pcap" rmse "../output/chosen_traffics/error_curv_momon_uti_with_param_fine.csv" > "$output_dir/csvs/momon_uti_fine.csv" 2>>test_errors_momon_uti_fine
     status=$?
     echo $status, $f
-    [ "$status" -eq "0" ] && touch $output_dir/done_momon_uti
+    [ "$status" -eq "0" ] && touch $output_dir/done_momon_uti_fine
     
     # read a
 done;
