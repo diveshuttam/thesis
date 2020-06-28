@@ -110,7 +110,7 @@ def calc(tmin, tmax, param):
 
 tmin = 0.5
 tmax = [3.0, 5.0]
-params = [500, 700]
+params = [1000, 10000, 100000, 1000000, 10000000]
 for t in tmax:
     for p in params:
         print("here")

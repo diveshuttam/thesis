@@ -1,0 +1,40 @@
+\begin{algorithm}
+    \DontPrintSemicolon
+    \SetAlgoLined
+    \SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+    \SetKwInOut{Parameters}{Parameters}
+    \Input{stat, stat\_time \tcp{Polled stat and time of polling}}
+    \Parameters{$\Delta$ \tcp{measure of curvature}}
+    \Output{Next polling time}
+    \tcp{Set the initial values}
+    polling\_interval = 1 \\
+    max\_time $\leftarrow$ $m_{T}$  \tcp{$m_{T}$ is maximum polling interval}
+    min\_time $\leftarrow$ $m_{t}$  \tcp{$m_{t}$ is minimum polling interval}
+    
+    window\_time $\leftarrow$ [] \tcp{time at which data was polled}
+    window\_stat $\leftarrow$ [] \tcp{stats data}
+    window\_dstat $\leftarrow$ [] \tcp{difference between two consecutive stats}
+    
+    % append to window
+    window\_time.append(time) \\
+    window\_stat.append(stat) \\
+    window\_dstat.append((window\_stat[-1]-window\_stat[-2])/(window\_time[-1]-window\_time[-2])) \tcp{append rate of consecutive elements}
+    
+    % adjust the rate
+    \tcp{only if sufficient entries in window}
+    \If{$window\_stat.length>3$}{
+    \tcp{check for curvature: if consecutive rate is close to the alternate rate}
+    \If{$abs(windows\_dstat[-1]-window\_dstat[-2])<\Delta$}{$polling\_interval*=2$ \\
+    \Else {$polling\_interval/=3$}
+    }
+    
+    % new\_period $\leftarrow$ T/(2*change\_count) \\
+    polling\_interval $\leftarrow$ $max(min(m_{T},polling\_interval),m_{t})$  \tcp{bring in range $m_{t}:m_{T}$} 
+    }
+    
+    SetTimeout(PollingInterval, Curvature Based Sampling) \tcp{call the same function after the timeout}
+    
+    \caption{Curvature Based Sampling}
+    \label{algo:algorithm}
+    \end{algorithm}
+    

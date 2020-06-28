@@ -1,20 +1,20 @@
 #!/bin/bash
 # rm -i $output/error.csv
 # set -e
-for f in ../output/chosen_traffics/**/*.pcap;
+for f in ../output/momon_data/new/**/*.pcap;
 do
     x=$(basename $f .pcap)
     output_dir=$(dirname $f)
     echo $x $output_dir
-    [ -f $output_dir/done_momon_uti_fine ] && continue 
+    # [ -f $output_dir/done_cemon_uti_fine ] && continue 
     [ -f $output_dir/graphs ] || mkdir -p "$output_dir/graphs" 
     [ -f $output_dir/csvs ] || mkdir -p "$output_dir/csvs" 
     echo working on $output_dir 
     # read a
-    ./single.sh "$output_dir/$x.pcap" rmse "../output/chosen_traffics/error_curv_momon_uti_with_param_fine.csv" > "$output_dir/csvs/momon_uti_fine.csv" 2>>test_errors_momon_uti_fine
+    ./single.sh "$output_dir/$x.pcap" rmse "../output/chosen_traffics/error_curv_momon_rmse_with_param.csv" > "$output_dir/csvs/curv_momon_rmse_with_param.csv" 2>>test_errors_curv_momon_rmse_with_param
     status=$?
     echo $status, $f
-    [ "$status" -eq "0" ] && touch $output_dir/done_momon_uti_fine
+    [ "$status" -eq "0" ] && touch $output_dir/done_cemon_uti_rmse
     
     # read a
 done;

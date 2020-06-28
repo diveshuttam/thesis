@@ -1,0 +1,59 @@
+\section{Introduction}
+\label{introduction}
+% What is network monitoring
+\textbf{Network Monitoring} consists of services which carry out statistics collection of various entities in a network (including flows, devices, ports, links etc.). It is a fundamental task in network management.
+% applications
+Many important applications such as traffic engineering, dynamic routing, network billing, anomaly detection, load balancing, Quality of Services(QoS) management and Service Level Agreement(SLA) enforcement heavily rely on these services.
+% examples
+There are many existing techniques in the literature which help with monitoring networks. The effectiveness of these techniques vary a lot in terms of cost, accuracy and promptness. The breadth in these techniques is due to the diversity in the network architecture.
+
+There are techniques like sFlow \cite{sflow} and NetFlow \cite{netflow} which are accurate and work on traditional networks. These require installation of monitoring modules on the network devices which raises many privacy concerns. It also incurs huge cost in terms of time and effort required on part of network administrators \cite{opensketch}. 
+On the other side of spectrum with recent development around SDN, there are techniques like CeMon\cite{CEMON} and Multi Objective which can be easily deployed to a compatible switch using a SDN controller. There isn't need of additional hardware per say on the switches.
+
+% SDN
+Software Defined Networking (SDN) is a network architecture which enables the central control of the network through a software program called SDN controller. The decision making functionalities are kept at controller side which gives commands to the underlying network devices. SDN makes the deployment of new technologies and managing the network much easier \cite{improving}. The network devices follow the flow rules installed by the controller. This centralized control makes many tasks like implementing new protocols, highly customized routing and network monitoring very easy.
+
+Network monitoring approaches can be categorized in two categories: \textbf{Pull} Based and \textbf{Push} Based.
+In \textbf{push based} mechanisms, the network devices are active and are programmed to send network statistics at a particular rate to a device (collector). This device does the job of analysing the statistics for the required data. Though push based mechanisms generally provide accurate information, it requires heavy implementation capabilities on collectors to ensure real time processing of packets. It also wastes hardware resources e.g. in a push based technique such as plank \cite{plank} we waste one port and a link per switch to forward the traffic to the collector. 
+
+
+In case of \textbf{pull based} techniques, network devices provide these statistics only when requested. This approach is already incorporated as API in SDN implementations like OpenFlow. OpenFlow controller can request the network statistics from the underlying network devices at different granularity like per flow, per port, and queue statistics. 
+% % constant vs dynamic
+Within the pull based approaches, there are two options we can poll the network stats at a constant rate e.g. \cite{OpenTM} or dynamically. A trade-off exists between the accuracy and the overhead for a given polling rate. Polling at a higher rate gives an better measurement of the traffic but has a greater overhead. On the other hand, polling at a lower rate has less overhead but gives a less accurate measure. Most of the existing traffic measurement methods in SDN use a dynamic rate adjusted based on the behavior of the network traffic. Recent works include CeMon and Multi Objective.
+CeMon uses a lightweight dynamic approach which can easily run with minimal computation but being a pull based mechanism so instead of observing, it tries to predict the next polling time which leads to relatively inaccurate measurements as compared to Push based techniques like sFlow\cite{sflow}, Plank\cite{plank}.
+
+% Our approach
+Our approach is inspired by CeMon\cite{CEMON} and Multi Objective\cite{momon}.
+CeMon proposes two approaches, namely Maximum Coverage Polling Scheme (MCPS), which determines the minimum switches to poll to get an overview of all the flows in the network and Adaptive Fine-Grained Polling Scheme (AFPS) for giving optimum polling interval for a single flow. 
+Multi Objective proposes an Elastic Polling Scheme to poll for single flows and uses OpenFlow groups to determine which switches to poll.
+
+%% Large variations in traffic of even small duration have significant negative impact on the future accuracy of CeMon.
+% The polling intervals of CeMon are fixed to a small finite set of values. 
+% 0.5 1 2 4 5 2.5 1.25 0.625 | 0.5 (0.5)*2^n (5)*2^n 0.5*(2)^m/3^m
+
+Our method is an alternative pull based mechanism to the AFPS scheme of CeMon and EP scheme of Multi-Objective.
+Our scheme also adjusts the polling rate of a flow dynamically based on its recent behavior. 
+The inspiration behind our work is curvature based sampling of curves\cite{curvature}.
+The method is based on sampling in proportion to the current curvature of the metric that is needed to be measured.
+Our aim is to propose a new approach to calculate the optimal polling rate such that we capture most of variations in
+the network traffic on 0.5 to 5 seconds timescale as used by CeMon \cite{CEMON}.
+
+The main reason for our approach is different than most existing schemes is they use some variation of a strategy where the rate of change is paramount
+in determining change and calculating increase or decrease in polling scheme we in Section \ref{algorithm} show how is curvature a better measure than the first order rate of change.
+
+We show that our scheme improves the trade-off between overhead and accuracy w.r.t. CeMon and Multi-Objective.
+
+% Key Contributions:
+The key contributions of our work are:
+\begin{itemize}
+    \item We propose a pull based approach to poll statistics at a dynamic rate.
+    \item We develop an algorithm to determine the throughput of the monitored flows.
+    \item We introduce a cost based approach to rank the algorithms.
+\end{itemize}
+
+% Describing the sections of this paper
+This paper is structured as follows:
+Section 2 includes the background and architecture of Curvature Based Sampling.
+Section 3 describes our strategy in detail the explains the algorithms used.
+Section 4 elaborates on the performance of Curvature Based Sampling and compares it with existing schemes. 
+Section 5 summarizes related work and Section 6 concludes the paper.

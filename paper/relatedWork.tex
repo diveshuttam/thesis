@@ -1,0 +1,45 @@
+\section{Related Work}
+% Structuring this similar to multi objective paper
+
+% IMP: make sure that we highlight the weakness for each of the papers.
+
+\subsection{Open-TM}
+% 2010
+OpenTM\cite{opentm} is among the initial works in the domain of network monitoring in SDN. It presents a few schemes to poll switches in a network to calculate traffic matrix while ensuring equal load distribution on switches. It shows that at polling the end switches for a flow is better in terms of accuracy but leads to more overhead. It suggests random polling and round-robin polling schemes for polling switches so that the load is evenly distributed. These later schemes trade off some accuracy (2-3\%) for uniform load distribution.  
+% NOTE: DETAILED COMPARISION WITH RESPECT TO OpenTM IS NOT NEEDED. As it is very out of date. Its just constant polling in a interesting way.
+
+\subsection{FlowSense}
+% 2013
+FlowSense is a push based mechanism which uses only flow removed messages for finding the utilization. It serves well when there are a large number of flows of small duration. Since it uses flow removed messages only, it is a zero overhead solution. 
+
+\subsection{Payless}
+% 2014
+Payless\cite{payless} proposes a high level RESTful stats collection API for abstracting monitoring complexity from the network applications and the controller implementation.
+It proposes a general architecture for implementing this.
+It also proposes an algorithm for calculating link utilization using the underlying implementation. The algorithm polls the traffic which contribute more to the link utilization at a higher rate. It also features batching of multiple requests to reduce the overhead.
+The authors compare the algorithm to FlowSense\cite{flowsense} and Constant polling schemes. They conclude that their algorithm makes a good trade off between overhead and accuracy. Similar accuracy as constant polling but at the same time reducing the polling overhead to 50\%
+
+% Remove Plank it is really not needed
+
+% \subsection{Plank}
+% % 2014
+% Plank\cite{planck} is a push-based approach for general networks. It uses oversubscribed port mirroring in switches to generate the flows in Real-Time. They redirect traffic from all ports of a switch to a collector and the collector runs fast real-time processing of the packets to generate flows. Their approach only works for TCP flows. They use the TCP packet headers to get an estimate of the flow.
+
+% Oversubscribed mirroring causes problems as many packets may be dropped by the mirroring ports in case of heavy traffic. Plank demonstrates with experiments that the packet drop is around 5\% which does not introduce significant errors. It also suggests some methods which may be used to reduce this further.
+
+\subsection{CeMon}
+% 2015
+CeMon\cite{CEMON} is a polling-based technique for SDN networks which suggests two approaches
+
+Maximum Coverage Polling Scheme (MCPS):
+This is used for a global view of flows. It tries various algorithms to minimize the number of switches polled including brute-force and greedy, finally uses heuristic Dynamic adjust and periodic reconstruction DAPR. The above strategy is not always optimal though is better from greedy and brute-force approaches
+
+Adaptive-Fine Grained Polling Scheme (AFPS):
+This is used for getting a view of a certain flow(s). They compare this approach with Payless, Proportional Tuning, Exponentially Weighted Moving Average (EWMA) Tuning. It uses a sliding window algorithm. The window keeps track of the network history of a flow when the traffic deviates significantly from history, the algorithm decreases the window very quickly (by half) and also increases the polling. If the traffic is stable it increases the window by 1 so that more weight is given to history. They found that their approach was better than EWMA in terms of cost though there was more error than EWMA. Another advantage of this approach is that it is parameter less.
+They go on to conclude that the SWT approach is ateast as good as other approaches and in some cases even better.
+
+
+
+\subsection{Multi-Objective}
+% 2016
+Multi Objective is inspired from OpenTM\cite{opentm}, payless\cite{payless} and CeMon\cite{CEMON}. It uses new openflow features like group entries to simplify the process adopted by payless. It polls only the end switches as suggested in OpenTM. It suggests a different algorithm for the dynamic polling addressing some of the issues in the CeMon's SWT algorithm. The problem with Multi-Objective is two fold. First it doesn't test on real traffic. Second it uses number of peaks as error measure which itself is not the standard. It is better to use RMSE. 

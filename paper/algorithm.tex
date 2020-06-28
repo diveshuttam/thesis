@@ -1,0 +1,59 @@
+\section{Algorithm and Analysis}
+
+% How are we inspired from other related works
+We propose a algorithm which blends the good features of the schemes which we referred in \ref{section:related_work} and improves upon many of their flaws at the same time. 
+
+We are inspired from flow sense\cite{flowsense} in the feature that for small flows, we use the flow removed messages to measure the traffic. 
+Inspired from OpenTM we poll only the edge switches to get the flow data. 
+Derived from Payless and Multi-Objective we are more sensitive to increase in traffic than to the decrease.
+Derived from CeMon we propose a parameter less approach to monitor any traffic.
+We use some of the ideas from Multi-Objective to improve upon weakness of CeMon e.g. by using a small window as it depicts a better change.
+
+% How are we better from each of the mentioned related work. Address just the different details.
+Though we are similar to the related works, we improve upon quite a bit.
+Unlike OpenTM we don't poll at a constant rate and use a dynamic frequency approach.
+Unlike Payless our approach does not have parameter to be tuned.
+Our approach has a better overhead and accuracy trade off than CeMon and Multi-Objective.
+We use a curvature based approach which we show to be a better criteria for polling than other approaches which use change as a criteria.
+
+% A detailed overview of our algorithm
+
+Please see Algorithm \ref{algo:algorithm} for the pseudo-code.
+\input{new_paper/sections/algo.tex}
+Our algorithm is similar in structure to CeMon or Multi-Objective in the aspect that we use a multiplicative change in frequency when our algorithm detects a change.
+The difference is that we use curvature as a criteria to detect change and use different factors than those algorithms.
+
+% Why is a curvature a better criteria
+Most schemes (Multi-Objective, CeMon etc.) uses the criteria "If change in measured property is more than some factor between two polls" then increase polling rate else decrease polling rate.
+Instead of this we use the criteria "If significant curvature is detected (absolute difference between slopes within 3 polls is more than 500)" we increase the polling else decrease.
+We increase the polling rate else we decrease the polling rate.
+To see why our method is better than that of other schemes we look at the following curves.
+
+
+% curve 1 linear line increasing a constant rate
+
+In \ref{Fig 1} \ref{Fig 2} we have a curve which is a straight line.
+Most other schemes either increase the polling rate or decrease it based on the slope of the line as they use the rate as a measure to check if there is a change.
+The best strategy here is to reduce the polling rate as it will not affect accuracy at the same time reduce the overhead.
+
+In \ref{Fig 3} \ref{Fig 4} \ref{Fig 5} we have curve which change in slope as shown in the points.
+Increasing the polled points though increases the overhead it also decreases the error depending on the curvature as seen in figure \ref{fig 6}
+
+The steps in our algorithm are as follows:
+\begin{itemize}
+    \item We maintain a window of last 3 polled stats and their slopes (slope1 between points 1 and 2, slope2 between points 2 and 3)
+    \item We check if the slope1 and slope2 is more than a constant (500) if it is so we decrease the polling time by a factor of 3.
+    \item Else if the difference is less than the constant, we increase the polling interval by a factor of 2.
+    \item The polling interval is bounded between tmin(=0.5s) and tmax(=5.0s)
+    \item We also have another novelty, since we decrease by a factor of 3 which is relatively high, we don't decrease on two continues polls. This helps in quick decrease while keeping the overhead a bit constrained. 
+\end{itemize}
+
+We use the constants 3 for decrease and 2 for increase as they are co-prime.
+One of the problems with CeMon SWT \cite{cemon} was that it used the same constants (2) on both increase and decrease.
+The problem with this is that the polling frequency is discretely bounded by the set {0.5, 0.625, 1, 1.25, 2, 2.5, 4, 5}s.
+As we can see CeMon can't have a polling frequency between 2.5 and 4 seconds which causes error in polling traffic with variations of the order 3s.
+
+Another problem with CeMon which we resolve is that we find through experiments that only recent windows play an active role in determining the rate of change.
+CeMon suffers with the problem as we see in experiments whenever there is a sharp change in traffic, the standard deviation rises to a high value and the polling interval is maintained at tmax for a long time.
+This strategy of less window size is also used by Multi-Objective. 
+Though Multi-Objective also uses the rate change criteria unlike our algorithm in which we use curvature as the criteria.

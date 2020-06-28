@@ -1,6 +1,8 @@
 import similaritymeasures
 import numpy as np
 import scipy.interpolate as interpolate
+from scipy.stats import pearsonr
+from numpy import cov
 from frechet import frechetDist
 
 def rmse(px,py,tx,ty):
@@ -11,6 +13,20 @@ def rmse(px,py,tx,ty):
     p=pf(xc)
     t=tf(xc)
     return np.sqrt(np.average(((p-t)**2)))
+
+def correlation(px,py,tx,ty):
+    pf = interpolate.interp1d(px,py,"linear")
+    tf = interpolate.interp1d(tx,ty,"linear")
+    n=len(tx)*5
+    xc=np.linspace(px[0],px[-1],n)
+    p=pf(xc)
+    t=tf(xc)
+    a = p
+    b = t
+    # a = (a - np.mean(a)) / (np.std(a))
+    # b = (b - np.mean(b)) / (np.std(b))
+    corr, _ = pearsonr(a,b)
+    return corr
 
 def nrmse(px,py,tx,ty):
     pf = interpolate.interp1d(px,py,"linear")

@@ -1,0 +1,58 @@
+\section{System Design}
+\label{system_design}
+\subsection{Background}
+\label{background}
+% openflow standard
+In past few years OpenFlow \cite{openflow} has become de-facto open standard for communication between SDN controller and SDN switches. 
+It is the most widely used standard for deployment of SDN.
+The standard specifies protocol for communication between control and data plane.
+OpenFlow standard allows the controller to manage flow entries in the switches to achieve routing and monitoring functionalities.
+The switches maintains the count of number of packets and bytes matched to a particular flow entry or transferred through each port and each queue.
+SDN controller can request these statistics using the statistics request messages provided by OpenFlow. 
+
+% out of band vs in band
+SDN can be deployed in two configurations, Out-of-Band or In-Band.
+In the case of Out-of-Band deployment, the control messages are transmitted over a dedicated control link from SDN controller to the SDN switch.
+Whereas, in In-Band configuration the SDN controller is connected to single switch in the network and both control and data traffic is transmitted over the same link called \textit{``data link"}. 
+The Out-of-Band configuration has more cost than In-Band deployment in terms of hardware cost and management of the dedicated link between SDN controller and switches.
+But in case of In-Band the data link is carrying whole traffic (control and network). Thus, there is an overhead on the data link in case of In-Band configuration.
+There exists a trade-off between overhead on data link and hardware, and management cost \cite{in-band_and_out-band}.
+Our approach works for both In-Band and Out-of-Band SDN deployments.
+
+% Dependent variable:
+% accuracy, polling overhead
+% Independent variable:
+% frequency, switches flow length etc.
+% Assumptions: Distributions
+% logical reasoning
+
+% Curvature based sampling
+\subsection{Sampling technique}
+The problem of polling can be formulated as that of sampling of a continuous curve into discrete points.
+Some popular sampling techniques for curves are highlighted in \cite{curvature}. These include:
+\begin{enumerate}
+\item
+    \textbf{Arc length sampling} where the curve is sampled at equal distance on the arc.
+\item
+    \textbf{Curvature based sampling} where the sampling is done in proportion to the instantaneous curvature of the curve
+\item
+    \textbf{Mixed Sampling} where a combination of both Arc based sampling and Curvature based sampling is used.
+\end{enumerate}
+
+% Therefore, In-Band configuration is much more common in practice. Routing for the control messages in case of in-band deployment is determined by the network administrator. A separate VLAN can be configured for delivering control messages \cite{CEMON}. 
+
+In this paper we use a modification of simple curvature based sampling for our case. 
+Though we can't use the highlighted techniques as it is.
+This is due to the fact that arc based sampling in a way assumes the whole curve to be available so as to find and divide the length of curve into equal parts.
+It is not the case in our scenario. Also, curvature based sampling needs instantaneous curvature which is not available.
+We can only approximate average curvature between polls.
+To resolve this we modify the curvature based sampling to use average curvature as highlighted in the algorithm \ref{section:algorithm}.
+
+
+% TODO: Architecture Figure
+\begin{figure}[ht]
+\includegraphics[width=.5\textwidth]{images/architecture.eps}
+
+\caption{Curvature Based Sampling Architecture.}
+\label{fig:Curvature Based Sampling_arch}
+\end{figure}

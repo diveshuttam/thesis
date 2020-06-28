@@ -43,6 +43,7 @@ def cemon(x,y,bytes_poller,utilization_poller, tmin, tmax, param):
     last_bytes = 0
     win = window([])
     ws = 3
+    current_utilization = last_utilization = 0
 
 
     while(current_time < x[-1]):
@@ -56,8 +57,10 @@ def cemon(x,y,bytes_poller,utilization_poller, tmin, tmax, param):
             print("breaking")
             break
         print(f"{current_time}, {current_bytes}, {τ}, ", end='')
+        # var = current_utilization-last_utilization
         var = current_bytes-last_bytes
-        last_bytes=current_bytes
+        # last_utilization = current_utilization
+        last_bytes = current_bytes
         if(win.length<3):
             print(f'same, {τ}')
             current_time+=τ
@@ -109,21 +112,21 @@ def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
         except:
             print("breaking")
             break
-        print(f"{current_time}, {current_bytes}, {τ}, ", end='')
+        print(f"{current_time}, {current_bytes}, {current_utilization} {τ}, ", end='')
         # var = current_reading-last_reading
         last_bytes=current_bytes
         if(win_bytes.length==0):
             current_time+=τ
-            win_bytes.append(current_bytes)
+            win_bytes.append(current_utilization)
             print(f'same, {τ}')
             continue
         elif(win_bytes.length==1):
             current_time+=τ
-            win_bytes.append(current_bytes)
+            win_bytes.append(current_utilization)
             dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
             print(f'same, {τ}')
             continue
-        win_bytes.append(current_bytes)
+        win_bytes.append(current_utilization)
         dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
         tdiff = x1[-1]-x1[-3]
         ddwin_bytes.append((win_bytes[-1]-win_bytes[-3])/(tdiff))
