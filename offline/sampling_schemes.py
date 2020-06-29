@@ -83,7 +83,7 @@ def cemon(x,y,bytes_poller,utilization_poller, tmin, tmax, param):
 
     x1.append(x[-1])
     z1.append(utilization_poller(x[-1]))
-    return x1,z1
+    return x1,y1
 
 
 def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
@@ -117,16 +117,16 @@ def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
         last_bytes=current_bytes
         if(win_bytes.length==0):
             current_time+=τ
-            win_bytes.append(current_utilization)
+            win_bytes.append(current_bytes)
             print(f'same, {τ}')
             continue
         elif(win_bytes.length==1):
             current_time+=τ
-            win_bytes.append(current_utilization)
+            win_bytes.append(current_bytes)
             dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
             print(f'same, {τ}')
             continue
-        win_bytes.append(current_utilization)
+        win_bytes.append(current_bytes)
         dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
         tdiff = x1[-1]-x1[-3]
         ddwin_bytes.append((win_bytes[-1]-win_bytes[-3])/(tdiff))
@@ -156,8 +156,9 @@ def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
         current_time += τ
 
     x1.append(x[-1])
+    y1.append(bytes_poller(x[-1]))
     z1.append(utilization_poller(x[-1]))
-    return x1,z1
+    return x1,y1
 
 # def curvature2(x,y,bytes_poller, utilization_poller):
 #     x1,y1 = [],[]
@@ -248,8 +249,8 @@ def momon(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
         if(len(z1)<2):
             current_time+=τ
             continue
-        un = z1[-1]
-        un_1 = z1[-2]
+        un = y1[-1]
+        un_1 = y1[-2]
         if (un+un_1!=0):
             dn = abs((un-un_1)/((un+un_1)/2.0))
         else:
@@ -258,7 +259,7 @@ def momon(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
             current_time+=τ
             win.append(dn)
             continue
-        win.append(utilization)
+        win.append(current_bytes)
         if(abs(win[-1]-win[-2])>0.2):
             τ = max(τ_min,τ/2)
             # ws = max(3,ceil(ws/2))
@@ -271,9 +272,10 @@ def momon(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
             # win.popleft()
         current_time += τ
     x1.append(x[-1])
+    y1.append(bytes_poller(x[-1]))
     z1.append(utilization_poller(x[-1]))
     
-    return x1,z1
+    return x1,y1
 
 
 # def proportional(x,y,bytes_poller, utilization_poller):
