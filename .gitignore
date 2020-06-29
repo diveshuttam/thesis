@@ -4,3 +4,4 @@ output/
 output.zip
 lbnl-traces/
 venv/
+momon_data/
