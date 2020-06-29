@@ -11,7 +11,7 @@ do
     [ -f $output_dir/csvs ] || mkdir -p "$output_dir/csvs" 
     echo working on $output_dir 
     # read a
-    ./single.sh "$output_dir/$x.pcap" rmse "../output/chosen_traffics/error_curv_momon_rmse_with_param.csv" > "$output_dir/csvs/curv_momon_rmse_with_param.csv" 2>>test_errors_curv_momon_rmse_with_param
+    ./single.sh "$output_dir/$x.pcap" rmse "../output/momon_data/error_curv_momon_rmse_with_param.csv" > "$output_dir/csvs/curv_momon_rmse_with_param.csv" 2>>test_errors_curv_momon_rmse_with_param
     status=$?
     echo $status, $f
     [ "$status" -eq "0" ] && touch $output_dir/done_cemon_uti_rmse
