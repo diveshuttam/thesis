@@ -35,7 +35,35 @@ def nrmse(px,py,tx,ty):
     xc=np.linspace(px[0],px[-1],n)
     p=pf(xc)
     t=tf(xc)
-    return np.sqrt(np.average((((p-t)/p)**2)))
+    return np.sqrt(np.average(((p-t)/t)**2))
+
+def nrmsep(px,py,tx,ty):
+    pf = interpolate.interp1d(px,py,"linear")
+    tf = interpolate.interp1d(tx,ty,"linear")
+    n=len(tx)*5
+    xc=np.linspace(px[0],px[-1],n)
+    p=pf(xc)
+    t=tf(xc)
+    return np.sqrt(np.average(((p-t)/p)**2))
+
+def relabs(px,py,tx,ty):
+    pf = interpolate.interp1d(px,py,"linear")
+    tf = interpolate.interp1d(tx,ty,"linear")
+    n=len(tx)*5
+    xc=np.linspace(px[0],px[-1],n)
+    p=pf(xc)
+    t=tf(xc)
+    return np.average(np.sqrt(((p-t)/t)**2))
+
+def relabsp(px,py,tx,ty):
+    pf = interpolate.interp1d(px,py,"linear")
+    tf = interpolate.interp1d(tx,ty,"linear")
+    n=len(tx)*5
+    xc=np.linspace(px[0],px[-1],n)
+    p=pf(xc)
+    t=tf(xc)
+    return np.average(np.sqrt(((p-t)/p)**2))
+
 
 def dtw(px,py,tx,ty):
     tx = tx[::5]

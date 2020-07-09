@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "./main_uti.py", line 6, in <module>
+    import matplotlib.pyplot as plt
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/matplotlib/pyplot.py", line 32, in <module>
+    import matplotlib.colorbar
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/matplotlib/colorbar.py", line 29, in <module>
+    import matplotlib.collections as collections
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 658, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 577, in module_from_spec
+  File "<frozen importlib._bootstrap>", line 556, in _init_module_attrs
+  File "<frozen importlib._bootstrap>", line 409, in cached
+  File "<frozen importlib._bootstrap_external>", line 364, in _get_cached
+  File "<frozen importlib._bootstrap_external>", line 289, in cache_from_source
+  File "<frozen importlib._bootstrap_external>", line 63, in _path_split
+KeyboardInterrupt

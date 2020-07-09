@@ -31,7 +31,7 @@ class window(deque):
     def length(self):
         return len(self)
 
-def cemon(x,y,bytes_poller,utilization_poller, tmin, tmax, param):
+def cemon(x,y,bytes_poller,utilization_poller, tmin, tmax, param, ti, td):
     print("Cemon:")
     x1,y1,z1 = [],[],[]
 
@@ -82,11 +82,12 @@ def cemon(x,y,bytes_poller,utilization_poller, tmin, tmax, param):
         current_time += τ
 
     x1.append(x[-1])
+    y1.append(bytes_poller(x[-1]))
     z1.append(utilization_poller(x[-1]))
-    return x1,y1
+    return x1,z1
 
 
-def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
+def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param, ti, td):
     print("Curvature:")
     x1,y1,z1 = [],[],[]
     
@@ -117,26 +118,26 @@ def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
         last_bytes=current_bytes
         if(win_bytes.length==0):
             current_time+=τ
-            win_bytes.append(current_bytes)
+            win_bytes.append(current_utilization)
             print(f'same, {τ}')
             continue
         elif(win_bytes.length==1):
             current_time+=τ
-            win_bytes.append(current_bytes)
+            win_bytes.append(current_utilization)
             dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
             print(f'same, {τ}')
             continue
-        win_bytes.append(current_bytes)
+        win_bytes.append(current_utilization)
         dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
         tdiff = x1[-1]-x1[-3]
         ddwin_bytes.append((win_bytes[-1]-win_bytes[-3])/(tdiff))
         #instantaneous curvature
         # print(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0))
         # input()
-        if(abs(dwin_bytes[-2]-dwin_bytes[-1])>param):
+        if(abs((dwin_bytes[-1]/(dwin_bytes[-2]+1.0))-1)>param):
             print("increase", dwin_bytes[-2], dwin_bytes[-1], ddwin_bytes[-1])
             if(previous==False):
-                τ = max(τ_min,τ/3.0)
+                τ = max(τ_min,τ/ti)
                 ws = max(3,ceil(ws))
                 print(f"tripling polling, {τ}")
                 previous=True
@@ -144,7 +145,7 @@ def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
                 print(f'same_p, {τ}')
         else:
             print("decrease", dwin_bytes[-2], dwin_bytes[-1], ddwin_bytes[-1])
-            τ = min(τ_max,τ*2)
+            τ = min(τ_max,τ*td)
             print(f"halfing polling, {τ}")
             ws = ws + 1
             previous=False
@@ -158,7 +159,7 @@ def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
     x1.append(x[-1])
     y1.append(bytes_poller(x[-1]))
     z1.append(utilization_poller(x[-1]))
-    return x1,y1
+    return x1,z1
 
 # def curvature2(x,y,bytes_poller, utilization_poller):
 #     x1,y1 = [],[]
@@ -223,7 +224,7 @@ def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
 #     return x1,y1
 
 
-def momon(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
+def momon(x,y,bytes_poller, utilization_poller, tmin, tmax, param, ti, td):
     x1,y1,z1 = [],[],[]
     # initial variables
     current_time = x[0]
@@ -259,7 +260,7 @@ def momon(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
             current_time+=τ
             win.append(dn)
             continue
-        win.append(current_bytes)
+        win.append(utilization)
         if(abs(win[-1]-win[-2])>0.2):
             τ = max(τ_min,τ/2)
             # ws = max(3,ceil(ws/2))
@@ -275,7 +276,7 @@ def momon(x,y,bytes_poller, utilization_poller, tmin, tmax, param):
     y1.append(bytes_poller(x[-1]))
     z1.append(utilization_poller(x[-1]))
     
-    return x1,y1
+    return x1,z1
 
 
 # def proportional(x,y,bytes_poller, utilization_poller):

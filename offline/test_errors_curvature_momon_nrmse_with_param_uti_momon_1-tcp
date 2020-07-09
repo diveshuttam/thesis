@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "./main_uti.py", line 10, in <module>
+    from load_file import load_file
+  File "/home/divesh/Desktop/thesis/offline/load_file.py", line 2, in <module>
+    import pyshark
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 764, in get_code
+  File "<frozen importlib._bootstrap_external>", line 833, in get_data
+KeyboardInterrupt

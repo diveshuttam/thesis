@@ -4,15 +4,13 @@ set -e
 traffic=$1
 error=$2
 error_file=$3
+method1=$4
+method2=$5
+type=$6
 echo $traffic $error
+# echo "/${method1}_vs_${method2}_${error}_with_param_${type}"
 echo -e "\n"
-# mkdir -p graphs/traffic_${traffic}/${error}/
-# ./main_bytes.py $traffic $error curvature proportional 61 61 graphs/traffic_${traffic}/${error}/curvature_vs_proportional 
-# ./main_bytes.py $traffic $error curvature ewma 61 61 graphs/traffic_${traffic}/${error}/curvature_vs_ewma
 x=$(dirname $traffic)
-./main_bytes.py $traffic $error curvature cemon 61 61 "$x/graphs/curvature_vs_momon_rmse_with_param" $error_file
-# echo ./main_bytes.py $traffic $error curvature momon 61 61 "$(dirname $traffic)/${error}-curvature_vs_momon_uti" $error_file
-
-# ./main_bytes.py $traffic $error curvature momon 61 61 graphs/traffic_${traffic}/${error}/curvature_vs_momon
-# ./main_bytes.py $traffic $error curvature curvature2 61 61 graphs/traffic_${traffic}/${error}/curvature_vs_curvature2 
+./main_${type}.py "$traffic" "$error" "${method1}" "${method2}" 61 61 "$x/graphs_${type}_w_tratio_fine/${method1}_vs_${method2}_${error}_with_param_${type}" "$error_file"
 echo -e "\n"
+paplay "/usr/share/sounds/ubuntu/stereo/phone-outgoing-busy.ogg"

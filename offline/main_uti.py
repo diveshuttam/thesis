@@ -6,7 +6,7 @@ import os
 import matplotlib.pyplot as plt
 import scipy.interpolate as interpolate
 import numpy as np
-import sampling_schemes_bytes
+import sampling_schemes_uti
 from load_file import load_file
 from similarity import *
 import sys
@@ -40,17 +40,17 @@ bytes_poller = interpolate.interp1d(x,y,'previous', fill_value=(0,y[-1]), bounds
 xc=np.linspace(x[0],x[-1],n)
 targets = yc = bytes_poller(xc) - bytes_poller(xc-1.0)
 utilization_poller = interpolate.interp1d(xc,yc)
-targets = yc = bytes_poller(xc)
+
 # sampling1
-sampling_scheme1 = eval(f"sampling_schemes_bytes.{s1}")
-sampling_scheme2 =  eval(f"sampling_schemes_bytes.{s2}")
+sampling_scheme1 = eval(f"sampling_schemes_uti.{s1}")
+sampling_scheme2 =  eval(f"sampling_schemes_uti.{s2}")
 print("here1")
 sys.stdout.flush()
-def calc(tmin, tmax, param):
+def calc(tmin, tmax, param, ti, td):
     if(s1=="periodic"):
         x1,y1 = map(list,sampling_scheme1(x,y,bytes_poller,p1(),utilization_poller))
     else:
-        x1,y1 = map(list,sampling_scheme1(x,y,bytes_poller,utilization_poller,tmin,tmax,param))
+        x1,y1 = map(list,sampling_scheme1(x,y,bytes_poller,utilization_poller,tmin,tmax,param, ti, td))
     # print(len(x1),len(y1))
 
     a1 = interpolate.interp1d(x1,y1,"linear")
@@ -63,7 +63,7 @@ def calc(tmin, tmax, param):
     if(s2=="periodic"):
         x2,y2 = map(list,sampling_scheme2(x,y,bytes_poller,p2(),utilization_poller))
     else:
-        x2,y2 = map(list,sampling_scheme2(x,y,bytes_poller, utilization_poller, tmin,tmax,param))
+        x2,y2 = map(list,sampling_scheme2(x,y,bytes_poller, utilization_poller, tmin,tmax,param, ti, td))
     # print(len(x2),len(y2))
 
     a2 = interpolate.interp1d(x2,y2,"linear")
@@ -91,13 +91,12 @@ def calc(tmin, tmax, param):
     # show plot
     plt.suptitle(f"error green ({sampling_scheme1.__name__}): {error1} | overhead ({sampling_scheme1.__name__}): {overhead1} \n"
                 f"error blue ({sampling_scheme2.__name__}): {error2} | overhead ({sampling_scheme2.__name__}): {overhead2}\n"
-                f"tmin={tmin},tmax={tmax},param={param}")
+                f"tmin={tmin},tmax={tmax},param={param},ti={ti},td={td}")
     plt.legend(loc="upper left")
-    plt.savefig(f"{image_path}_{s1}_{s2}_uti_{tmin}_{tmax}_{param}.png")
+    plt.savefig(f"{image_path}_{s1}_{s2}_uti_{tmin}_{tmax}_{param}_{ti}_{td}.png")
     # print("done",sys.argv)
-    eprint("\n")
-    eprint("error",fname, sys.argv[2], s1, error1, s2, error2, sep="|", end="|")
-    eprint("overhead",fname,  sys.argv[2], s1, overhead1, s2, overhead2, sep="|")
+    eprint("error",fname, sys.argv[2], s1, error1, s2, error2, sep=",", end=",")
+    eprint("overhead",fname,  sys.argv[2], s1, overhead1, s2, overhead2, sep=",", end=',')
 
 
     print(f"\n{s1} polls")
@@ -112,14 +111,18 @@ def calc(tmin, tmax, param):
 tmin = 0.5
 tmax = [3.0, 5.0]
 params = [0.1, 0.2, 0.3, 0.4, 0.5]
+tiratio = np.arange(2,3.6,0.1)
+tdratio = np.arange(2.5,4.6,0.1)
 for t in tmax:
     for p in params:
-        print("here")
-        sys.stdout.flush()
-        try:
-            calc(tmin,t,p)
-            eprint("constants",fname,  sys.argv[2], 'tmin', tmin, 'tmax', t, 'param', p, sep="|")
-            print("constants",fname,  sys.argv[2], 'tmin', tmin, 'tmax', t, 'param', p, sep="|")
-            sys.stdout.flush()
-        except:
-            raise
+        for ti in tiratio:
+            for td in tdratio:
+                print("here")
+                sys.stdout.flush()
+                try:
+                    calc(tmin,t,p,ti,td)
+                    eprint("constants",fname,  sys.argv[2], 'tmin', tmin, 'tmax', t, 'param', p, 'tiratio', ti, 'tdratio', td, sep=",")
+                    print("constants",fname,  sys.argv[2], 'tmin', tmin, 'tmax', t, 'param', p, 'tiratio', ti, 'tdratio', td, sep=",")
+                    sys.stdout.flush()
+                except:
+                    raise

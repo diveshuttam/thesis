@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "./main_bytes.py", line 7, in <module>
+    import scipy.interpolate as interpolate
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/scipy/interpolate/__init__.py", line 167, in <module>
+    from .interpolate import *
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/scipy/interpolate/interpolate.py", line 15, in <module>
+    import scipy.special as spec
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/scipy/special/__init__.py", line 637, in <module>
+    from . import _basic
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/scipy/special/_basic.py", line 19, in <module>
+    from . import orthogonal
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/scipy/special/orthogonal.py", line 83, in <module>
+    from scipy import linalg
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/scipy/linalg/__init__.py", line 196, in <module>
+    from .basic import *
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/scipy/linalg/basic.py", line 17, in <module>
+    from ._solve_toeplitz import levinson
+  File "<frozen importlib._bootstrap>", line 416, in parent
+KeyboardInterrupt

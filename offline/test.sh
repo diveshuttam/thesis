@@ -1,63 +1,25 @@
 #!/bin/bash
-# rm -i $output/error.csv
 # set -e
-for f in ../output/momon_data/new/**/*.pcap;
+method1="curvature" # curvature/momon/cemon
+method2="momon" # curvature/momon/cemon
+type="uti" # bytes/uti
+error="nrmse" # nrmse/relabs/correlation/rmse/nrmsep/relabsp
+[ -f "../output/momon_data/${type}_w_tratio_fine_results" ] || mkdir -p "../output/momon_data/${type}_w_tratio_fine_results"
+for f in ../output/momon_data/**/*.pcap;
 do
     x=$(basename $f .pcap)
     output_dir=$(dirname $f)
     echo $x $output_dir
-    # [ -f $output_dir/done_cemon_uti_fine ] && continue 
-    [ -f $output_dir/graphs ] || mkdir -p "$output_dir/graphs" 
-    [ -f $output_dir/csvs ] || mkdir -p "$output_dir/csvs" 
-    echo working on $output_dir 
+    # [ -f "$output_dir/done_${method1}_${method2}_${type}_w_tratio_fine_${error}" ] && continue 
+    [ -f "$output_dir/graphs_${type}_w_tratio_fine" ] || mkdir -p "$output_dir/graphs_${type}_w_tratio_fine" 
+    [ -f "$output_dir/csvs_${type}_w_tratio_fine" ] || mkdir -p "$output_dir/csvs_${type}_w_tratio_fine" 
+    echo "working on $output_dir "
     # read a
-    ./single.sh "$output_dir/$x.pcap" rmse "../output/momon_data/error_curv_momon_rmse_with_param.csv" > "$output_dir/csvs/curv_momon_rmse_with_param.csv" 2>>test_errors_curv_momon_rmse_with_param
+    ./single.sh "$output_dir/$x.pcap" "${error}" "../output/momon_data/${type}_w_tratio_fine_results/error_${method1}_${method2}_${error}_with_param_${x}.csv" "$method1" "$method2" "$type" > "$output_dir/csvs_${type}_w_tratio_fine/${method1}_${method2}_${error}_with_param_${type}.csv" 2>>"test_errors_${method1}_${method2}_${error}_with_param_${type}_${x}";
     status=$?
-    echo $status, $f
-    [ "$status" -eq "0" ] && touch $output_dir/done_cemon_uti_rmse
-    
+    echo "$status, $f"
+    [ "$status" -eq "0" ] && touch "$output_dir/done_${method1}_${method2}_${type}_w_tratio_fine_${error}";
     # read a
 done;
-# rmse
-# ./single.sh br2 rmse > $output/br2.csv
-# ./single.sh matrix2 rmse > $output/matrix2.csv
-# ./single.sh pareto0.1 rmse > $output/pareto0.1.csv
-# ./single.sh pareto0.2 rmse > $output/pareto0.2.csv
-# ./single.sh poission_slow0.2 rmse > $output/poission_slow0.2.csv
-# ./single.sh poission0.1 rmse > $output/poission0.1.csv
-# ./single.sh poission0.2 rmse > $output/poission0.2.csv
-# ./single.sh voip0.1 rmse > $output/voip0.1.csv
-# ./single.sh voip0.2 rmse > $output/voip0.2.csv
 
-# # nrmse
-# ./single.sh br2 nrmse
-# ./single.sh matrix2 nrmse
-# ./single.sh pareto0.1 nrmse
-# ./single.sh pareto0.2 nrmse
-# ./single.sh poission_slow0.2 nrmse
-# ./single.sh poission0.1 nrmse
-# ./single.sh poission0.2 nrmse
-# ./single.sh voip0.1 nrmse
-# ./single.sh voip0.2 nrmse
-
-# # dtw
-# ./single.sh br2 dtw
-# ./single.sh matrix2 dtw
-# ./single.sh pareto0.1 dtw
-# ./single.sh pareto0.2 dtw
-# ./single.sh poission_slow0.2 dtw
-# ./single.sh poission0.1 dtw
-# ./single.sh poission0.2 dtw
-# ./single.sh voip0.1 dtw
-# ./single.sh voip0.2 dtw
-
-# # frechet
-# ./single.sh br2 dtw
-# ./single.sh matrix2 dtw
-# ./single.sh pareto0.1 dtw
-# ./single.sh pareto0.2 dtw
-# ./single.sh poission_slow0.2 dtw
-# ./single.sh poission0.1 dtw
-# ./single.sh poission0.2 dtw
-# ./single.sh voip0.1 dtw
-# ./single.sh voip0.2 dtw
+paplay "/usr/share/sounds/ubuntu/stereo/desktop-login.ogg";
