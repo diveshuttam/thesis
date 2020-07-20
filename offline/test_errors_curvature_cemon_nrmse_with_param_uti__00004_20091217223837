@@ -1,0 +1,79 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/sre_compile.py", line 276, in _optimize_charset
+    charmap[k] = 1
+IndexError: bytearray index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./main_uti.py", line 4, in <module>
+    import numpy
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/__init__.py", line 145, in <module>
+    from . import lib
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/lib/__init__.py", line 37, in <module>
+    from .utils import *
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/lib/utils.py", line 725, in <module>
+    _function_signature_re = re.compile(r"[a-z0-9_]+\(.*[,=].*\)", re.I)
+  File "/usr/lib/python3.6/re.py", line 233, in compile
+    return _compile(pattern, flags)
+  File "/usr/lib/python3.6/re.py", line 301, in _compile
+    p = sre_compile.compile(pattern, flags)
+  File "/usr/lib/python3.6/sre_compile.py", line 566, in compile
+    code = _code(p, flags)
+  File "/usr/lib/python3.6/sre_compile.py", line 551, in _code
+    _compile(code, p.data, flags)
+  File "/usr/lib/python3.6/sre_compile.py", line 126, in _compile
+    _compile(code, av[2], flags)
+  File "/usr/lib/python3.6/sre_compile.py", line 108, in _compile
+    _compile_charset(av, flags, code, fixup, fixes)
+  File "/usr/lib/python3.6/sre_compile.py", line 226, in _compile_charset
+    for op, av in _optimize_charset(charset, fixup, fixes):
+  File "/usr/lib/python3.6/sre_compile.py", line 287, in _optimize_charset
+    charmap += b'\0' * 0xff00
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "./main_uti.py", line 35, in <module>
+    arr = load_file(fname)
+  File "/home/divesh/Desktop/thesis/offline/load_file.py", line 32, in load_file
+    cap.apply_on_packets(new_packet)
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/pyshark/capture/capture.py", line 277, in apply_on_packets
+    return self.eventloop.run_until_complete(coro)
+  File "/usr/lib/python3.6/asyncio/base_events.py", line 471, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.6/asyncio/base_events.py", line 438, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.6/asyncio/base_events.py", line 1451, in _run_once
+    handle._run()
+  File "/usr/lib/python3.6/asyncio/events.py", line 145, in _run
+    self._callback(*self._args)
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/pyshark/capture/capture.py", line 288, in packets_from_tshark
+    await self._go_through_packets_from_fd(tshark_process.stdout, packet_callback, packet_count=packet_count)
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/pyshark/capture/capture.py", line 306, in _go_through_packets_from_fd
+    psml_structure=psml_struct)
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/pyshark/capture/capture.py", line 363, in _get_packet_from_stream
+    packet = packet_from_xml_packet(packet, psml_structure=psml_structure)
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/pyshark/tshark/tshark_xml.py", line 29, in packet_from_xml_packet
+    return _packet_from_pdml_packet(xml_pkt)
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/pyshark/tshark/tshark_xml.py", line 37, in _packet_from_pdml_packet
+    layers = [Layer(proto) for proto in pdml_packet.proto]
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/pyshark/tshark/tshark_xml.py", line 37, in <listcomp>
+    layers = [Layer(proto) for proto in pdml_packet.proto]
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/pyshark/packet/layer.py", line 31, in __init__
+    self._all_fields[attributes['name']] = LayerFieldsContainer(field_obj)
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/pyshark/packet/fields.py", line 93, in __new__
+    obj = str.__new__(cls, main_field.get_default_value(), *args, **kwargs)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "./main_uti.py", line 4, in <module>
+    import numpy
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/__init__.py", line 145, in <module>
+    from . import lib
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/lib/__init__.py", line 23, in <module>
+    from . import scimath as emath
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/lib/scimath.py", line 24, in <module>
+    from numpy.lib.type_check import isreal
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/lib/type_check.py", line 86, in <module>
+    def asfarray(a, dtype=_nx.float_):
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/core/overrides.py", line 178, in decorator
+    source = _wrapped_func_source.format(name=implementation.__name__)
+KeyboardInterrupt

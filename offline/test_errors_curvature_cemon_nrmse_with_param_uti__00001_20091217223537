@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "./main_uti.py", line 4, in <module>
+    import numpy
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/__init__.py", line 145, in <module>
+    from . import lib
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/lib/__init__.py", line 36, in <module>
+    from .polynomial import *
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/lib/polynomial.py", line 667, in <module>
+    @array_function_dispatch(_polyval_dispatcher)
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/core/overrides.py", line 181, in decorator
+    source, filename='<__array_function__ internals>', mode='exec')
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "./main_uti.py", line 121, in <module>
+    for tmin,tmax,p,ti,td in parameters.parameter_array:
+AttributeError: module 'parameters' has no attribute 'parameter_array'
+Traceback (most recent call last):
+  File "./main_uti.py", line 4, in <module>
+    import numpy
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/__init__.py", line 152, in <module>
+    from . import random
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/random/__init__.py", line 181, in <module>
+    from . import _pickle
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/random/_pickle.py", line 1, in <module>
+    from .mtrand import RandomState
+  File "mtrand.pyx", line 1, in init numpy.random.mtrand
+  File "<frozen importlib._bootstrap>", line 416, in parent
+KeyboardInterrupt

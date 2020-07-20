@@ -108,21 +108,25 @@ def calc(tmin, tmax, param, ti, td):
     print(*temp, sep="\n")
     plt.close()
 
-tmin = 0.5
-tmax = [3.0, 5.0]
-params = [0.1, 0.2, 0.3, 0.4, 0.5]
-tiratio = np.arange(2,3.6,0.1)
-tdratio = np.arange(2.5,4.6,0.1)
-for t in tmax:
-    for p in params:
-        for ti in tiratio:
-            for td in tdratio:
-                print("here")
-                sys.stdout.flush()
-                try:
-                    calc(tmin,t,p,ti,td)
-                    eprint("constants",fname,  sys.argv[2], 'tmin', tmin, 'tmax', t, 'param', p, 'tiratio', ti, 'tdratio', td, sep=",")
-                    print("constants",fname,  sys.argv[2], 'tmin', tmin, 'tmax', t, 'param', p, 'tiratio', ti, 'tdratio', td, sep=",")
-                    sys.stdout.flush()
-                except:
-                    raise
+# tmin,tmax,p,ti,td
+import parameters
+
+
+# tmin = 0.5
+# tmax = [3.0, 5.0]
+# params = [0.1, 0.2, 0.3, 0.4, 0.5]
+# tiratio = np.arange(2.5-0.5,2.5+0.6,0.1)
+# tdratio = np.arange(1.5-0.5,1.5+0.6,0.1)
+
+for tmin,tmax,p,ti,td in parameters.parameters_array:
+    print("here")
+    sys.stdout.flush()
+    try:
+        print(f"woring on {ti}, {p}")
+        sys.stdout.flush()
+        calc(tmin,tmax,p,ti,td)
+        eprint("constants",fname,  sys.argv[2], 'tmin', tmin, 'tmax', tmax, 'param', p, 'tiratio', ti, 'tdratio', td, sep=",")
+        print("constants",fname,  sys.argv[2], 'tmin', tmin, 'tmax', tmax, 'param', p, 'tiratio', ti, 'tdratio', td, sep=",")
+        sys.stdout.flush()
+    except:
+        raise

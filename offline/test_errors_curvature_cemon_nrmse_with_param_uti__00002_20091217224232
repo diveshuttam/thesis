@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "./main_uti.py", line 4, in <module>
+    import numpy
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/__init__.py", line 142, in <module>
+    from . import core
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/core/__init__.py", line 107, in <module>
+    from . import _internal
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/core/_internal.py", line 11, in <module>
+    import platform
+  File "/usr/lib/python3.6/platform.py", line 1149, in <module>
+    r'\[([^\]]+)\]?', re.ASCII)  # "[compiler]"
+  File "/usr/lib/python3.6/re.py", line 233, in compile
+    return _compile(pattern, flags)
+  File "/usr/lib/python3.6/re.py", line 301, in _compile
+    p = sre_compile.compile(pattern, flags)
+  File "/usr/lib/python3.6/sre_compile.py", line 562, in compile
+    p = sre_parse.parse(p, flags)
+  File "/usr/lib/python3.6/sre_parse.py", line 855, in parse
+    p = _parse_sub(source, pattern, flags & SRE_FLAG_VERBOSE, 0)
+  File "/usr/lib/python3.6/sre_parse.py", line 416, in _parse_sub
+    not nested and not items))
+  File "/usr/lib/python3.6/sre_parse.py", line 488, in _parse
+    sourceget()
+  File "/usr/lib/python3.6/sre_parse.py", line 255, in get
+    self.__next()
+  File "/usr/lib/python3.6/sre_parse.py", line 246, in __next
+    self.index = index + 1
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "./main_uti.py", line 4, in <module>
+    import numpy
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/__init__.py", line 145, in <module>
+    from . import lib
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/lib/__init__.py", line 38, in <module>
+    from .arraysetops import *
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/lib/arraysetops.py", line 438, in <module>
+    def setxor1d(ar1, ar2, assume_unique=False):
+  File "/home/divesh/Desktop/thesis/venv/lib/python3.6/site-packages/numpy/core/overrides.py", line 181, in decorator
+    source, filename='<__array_function__ internals>', mode='exec')
+KeyboardInterrupt

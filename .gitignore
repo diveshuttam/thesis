@@ -5,3 +5,5 @@ output.zip
 lbnl-traces/
 venv/
 momon_data/
+*.pcap
+*.yaml
