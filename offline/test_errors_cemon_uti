@@ -1,2 +1,0 @@
-/home/divesh/Desktop/thesis/offline/sampling_schemes.py:250: RuntimeWarning: invalid value encountered in double_scalars
-  dn = abs((un-un_1)/((un+un_1)/2.0))

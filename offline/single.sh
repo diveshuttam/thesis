@@ -7,10 +7,11 @@ error_file=$3
 method1=$4
 method2=$5
 type=$6
+results_folder="$7"
 echo $traffic $error
 # echo "/${method1}_vs_${method2}_${error}_with_param_${type}"
 echo -e "\n"
 x=$(dirname $traffic)
-./main_${type}.py "$traffic" "$error" "${method1}" "${method2}" 61 61 "$x/graphs_${type}_w_tratio_summary_results/${method1}_vs_${method2}_${error}_with_param_${type}" "$error_file"
+./main_${type}.py "$traffic" "$error" "${method1}" "${method2}" 61 61 "$x/graphs_${type}_${results_folder}/${method1}_vs_${method2}_${error}_with_param_${type}" "$error_file"
 echo -e "\n"
 paplay "/usr/share/sounds/ubuntu/stereo/phone-outgoing-busy.ogg"

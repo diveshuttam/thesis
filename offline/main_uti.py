@@ -109,7 +109,7 @@ def calc(tmin, tmax, param, ti, td):
     plt.close()
 
 # tmin,tmax,p,ti,td
-import parameters
+import parameters_uti
 
 
 # tmin = 0.5
@@ -118,7 +118,7 @@ import parameters
 # tiratio = np.arange(2.5-0.5,2.5+0.6,0.1)
 # tdratio = np.arange(1.5-0.5,1.5+0.6,0.1)
 
-for tmin,tmax,p,ti,td in parameters.parameters_array:
+for tmin,tmax,p,ti,td in parameters_uti.parameters_array:
     print("here")
     sys.stdout.flush()
     try:

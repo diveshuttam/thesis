@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "./main_uti.py", line 114, in <module>
-    tiratio = list(range(2,3.5,0.1))
-TypeError: 'float' object cannot be interpreted as an integer
