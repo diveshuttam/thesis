@@ -21,6 +21,7 @@ p2= lambda : eval(sys.argv[6])
 image_path = sys.argv[7]
 error_path = sys.argv[8]
 error_file = open(error_path,"a")
+data_path = sys.argv[9]
 
 def eprint(*args, **kwargs):
     print(*args, file=error_file, **kwargs)
@@ -97,6 +98,23 @@ def calc(tmin, tmax, param, ti, td):
     # print("done",sys.argv)
     eprint("error",fname, sys.argv[2], s1, error1, s2, error2, sep=",", end=",")
     eprint("overhead",fname,  sys.argv[2], s1, overhead1, s2, overhead2, sep=",", end=',')
+
+    # output data
+    data_file = open(f"{data_path}_{s1}_{s2}_uti_{tmin}_{tmax}_{param}_{ti}_{td}.csv", "w")
+    data_file.write(sampling_scheme1.__name__)
+    data_file.write("\n")
+    data_file.write(str(list(map(float,x1))))
+    data_file.write("\n")
+    data_file.write(str(list(map(float,y1))))
+    data_file.write("\n")
+    data_file.write(sampling_scheme2.__name__)
+    data_file.write("\n")
+    data_file.write(str(list(map(float,x2))))
+    data_file.write("\n")
+    data_file.write(str(list(map(float,y2))))
+    data_file.write("\n")
+    data_file.close()
+
 
 
     print(f"\n{s1} polls")
