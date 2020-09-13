@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import load_file
 import sys
+import similarity
 
 try:
     f = open("polled_flows_individual_list.txt")

@@ -3,7 +3,7 @@ import numpy as np
 import scipy.interpolate as interpolate
 from scipy.stats import pearsonr
 from numpy import cov
-from frechet import frechetDist
+#from frechet import frechetDist
 
 def rmse(px,py,tx,ty):
     pf = interpolate.interp1d(px,py,"linear")

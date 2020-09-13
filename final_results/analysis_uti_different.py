@@ -5,6 +5,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import load_file
 import sys
+def nrmse(px,py,tx,ty):
+    px = np.array(px)
+    py = np.array(py)
+    tx = np.array(tx)
+    ty = np.array(ty)
+    pf = interp1d(px,py,"linear",bounds_error=False,fill_value="extrapolate")
+    tf = interp1d(tx,ty,"linear",bounds_error=False,fill_value="extrapolate")
+    n=len(tx)*10
+    xc=np.linspace(px[0],px[-1],n)
+    p=pf(xc)
+    t=tf(xc)
+    return np.sqrt(np.average(((p-t)/t)**2))
 
 try:
     f = open("polled_flows_individual_list.txt")
@@ -26,11 +38,11 @@ except:
     f.write('\n'.join(polled_flows))
 
 # print(polled_flows)
-print(len(polled_flows))
+# print(len(polled_flows))
 
 def get_final_combined_flow_cemon(parameter):
     try:
-        f = open(f"final_cemon_individual_polled_uti_{parameter[1]}.txt")
+        f = open(f"final_cemon_individual_polled_uti_{float(parameter[1])}.txt")
         final_x = list(map(float, f.readline().split(",")))
         final_y = list(map(float, f.readline().split(",")))
         cemon_polls_count = list(map(int, f.readline().split(",")))
@@ -61,14 +73,14 @@ def get_final_combined_flow_cemon(parameter):
             cemon_functs.append(interp1d(cemon_time,cemon_polls,bounds_error=False,fill_value=(0,0)))
             tmin=min(tmin,cemon_time[0])
             tmax=max(tmax,cemon_time[-1])
-        print(tmin,tmax)
+        # print(tmin,tmax)
         final_x = list(np.arange(tmin,tmax,0.01))
         final_y = np.array([0]*len(final_x))
         for i in cemon_functs:
             final_y = final_y + i(final_x)
         
         # write to file
-        f = open("final_cemon_individual_polled_uti.txt", "w")
+        f = open(f"final_cemon_individual_polled_uti_{float(parameter[1])}.txt", "w")
         f.write(",".join(map(str,final_x)) + "\n")
         f.write(",".join(map(str,final_y)) + "\n")
         f.write(",".join(map(str,cemon_polls_count)) + "\n")
@@ -120,23 +132,36 @@ parameter_3 = list(filter(lambda x: x[1]==3.0, parameters_uti.parameters_array))
 
 for parameter in parameters_uti.parameters_array:
     # uti
-    cemon_x, cemon_y, cemon_polls_count = get_final_combined_flow_cemon(parameter_5)
+    cemon_x, cemon_y, cemon_polls_count = get_final_combined_flow_cemon(parameter)
     orig_x, orig_y = get_orig_flow()
-    curvature_x, curvature_y, momon_x, momon_y = get_curvature_and_momon(parameter,parameter_3) # from polling as single flows
+    curvature_x, curvature_y, momon_x, momon_y = get_curvature_and_momon(parameter,parameter) # from polling as single flows
 
-    print( 'total polls cemon=', sum(cemon_polls_count) - 2*len(polled_flows))
-    print(len(cemon_x))
+    cemon_overhead = sum(cemon_polls_count) - 2*len(polled_flows)
+    momon_overhead = len(momon_x) - 2 
+    curvature_overhead = len(momon_x) - 2 
 
-    plt.figure()
-    plt.plot(orig_x,orig_y, label="actual")
-    plt.plot(curvature_x, curvature_y, label="curvature")
-    plt.plot(momon_x, momon_y, label="momon")
-    # plt.plot(cemon_x,cemon_y, label="cemon")
-    plt.xlabel("Time (s)")
-    plt.ylabel("Utilization (bytes/sec) ")
-    plt.title(f"Utilization as measured by various schemes\n paramters = {parameter}")
-    plt.legend()
-    plt.savefig(f"utilization_graphs/different_tmax/without_cemon/without_cemon_utilization_"+"_".join(map(lambda x: str(float(x)),parameter))+".png")
+    cemon_error = nrmse(cemon_x, cemon_y, orig_x, orig_y)
+    momon_error = nrmse(momon_x, momon_y, orig_x, orig_y)
+    curvature_error = nrmse(curvature_x, curvature_y, orig_x, orig_y)
+
+    cemon_cost = cemon_error*cemon_overhead
+    momon_cost = momon_error*momon_overhead
+    curvature_cost = curvature_error*curvature_overhead
+
+    print("parameter", ",".join(map(str,parameter)), sep=",", end=",")
+    print("cemon,error", cemon_error, "cemon,overhead", cemon_overhead, "cemon_cost", cemon_cost, sep=",", end=",")
+    print("momon,error", momon_error, "momon,overhead", momon_overhead, "momon_cost", momon_cost, sep=",", end=",")
+    print("curvature,error", curvature_error, "curvature,overhead", curvature_overhead, "curvature_cost", curvature_cost, sep=",")
+    # plt.figure()
+    # plt.plot(orig_x,orig_y, label="actual")
+    # plt.plot(curvature_x, curvature_y, label="curvature")
+    # plt.plot(momon_x, momon_y, label="momon")
+    # # plt.plot(cemon_x,cemon_y, label="cemon")
+    # plt.xlabel("Time (s)")
+    # plt.ylabel("Utilization (bytes/sec) ")
+    # plt.title(f"Utilization as measured by various schemes\n paramters = {parameter}")
+    # plt.legend()
+    # plt.savefig(f"utilization_graphs/different_tmax/without_cemon/without_cemon_utilization_"+"_".join(map(lambda x: str(float(x)),parameter))+".png")
 
 # print()
 # print(parameter)
