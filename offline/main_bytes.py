@@ -15,26 +15,38 @@ sys.stdout.flush()
 fname=sys.argv[1]
 s1=sys.argv[3]
 s2=sys.argv[4]
-
+print("here")
 p1= lambda : eval(sys.argv[5])
 p2= lambda : eval(sys.argv[6])
 image_path = sys.argv[7]
 error_path = sys.argv[8]
 error_file = open(error_path,"a")
-
+print("here")
 def eprint(*args, **kwargs):
     print(*args, file=error_file, **kwargs)
-
+print("here")
 error = eval(sys.argv[2])
 
 display_actual = True
 display_plot1 = True
 display_plot2 = True
-
+print("here")
 # load data and interpolate actual plot
-arr = load_file(fname)
+# arr = load_file(fname)
+arr = []
+import random
+def f(t):
+    if(t<10):
+        return random.randint(0, 100)
+    return 10*t
+for t in np.arange(0.0,600.0,0.001):
+    arr.append((t,f(t)))
+
+
+print("here")
 x,y = map(list,zip(*arr))
-x = list(map(lambda zz:zz.timestamp(), x))
+# x = list(map(lambda zz:zz.timestamp(), x))
+x = list(map(lambda zz:zz, x))
 n = int((x[-1]-x[0])*2)
 bytes_poller = interpolate.interp1d(x,y,'previous', fill_value=(0,y[-1]), bounds_error=False)
 xc=np.linspace(x[0],x[-1],n)
@@ -116,9 +128,24 @@ def calc(tmin, tmax, param, ti, td):
 # tdratio = np.arange(1.5,5.0,0.1)
 
 
-import parameters_bytes
 
-for tmin,tmax,p,ti,td in parameters_bytes.parameters_array:
+# tmin = 0.5
+# tmax = [3.0, 5.0]
+# # tmax = [5.0]
+# params = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+# tiratio = np.arange(1.1,5,0.1)
+# tdratio = np.arange(1.1,5,0.1)
+# arr = []
+# for tma in tmax:
+#     for param in params:
+#         for ti in tiratio:
+#             for td in tdratio:
+#                 arr.append((tmin, tma, param, ti, td))
+
+arr = [(0.5, 3.0, 0.9, 2.2, 1.1)]
+# import parameters_bytes
+
+for tmin,tmax,p,ti,td in arr:
     sys.stdout.flush()
     try:
         calc(tmin,tmax,p,ti,td)

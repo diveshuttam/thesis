@@ -127,16 +127,24 @@ def calc(tmin, tmax, param, ti, td):
     plt.close()
 
 # tmin,tmax,p,ti,td
-import parameters_uti
+# import parameters_uti
 
 
-# tmin = 0.5
-# tmax = [3.0, 5.0]
-# params = [0.1, 0.2, 0.3, 0.4, 0.5]
-# tiratio = np.arange(2.5-0.5,2.5+0.6,0.1)
-# tdratio = np.arange(1.5-0.5,1.5+0.6,0.1)
+tmin = 0.5
+tmax = [3.0, 5.0]
+# tmax = [5.0]
+params = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+tiratio = np.arange(1.1,5,0.1)
+tdratio = np.arange(1.1,5,0.1)
+arr = []
+for tma in tmax:
+    for param in params:
+        for ti in tiratio:
+            for td in tdratio:
+                arr.append((tmin, tma, param, ti, td))
 
-for tmin,tmax,p,ti,td in parameters_uti.parameters_array:
+
+for tmin,tmax,p,ti,td in arr:
     print("here")
     sys.stdout.flush()
     try:

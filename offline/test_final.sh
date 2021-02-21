@@ -2,19 +2,22 @@
 # set -e
 method1="curvature" # curvature/momon/cemon
 method2="cemon" # curvature/momon/cemon
-type="uti" # bytes/uti
+# method2="momon" # curvature/momon/cemon
+type="bytes" # bytes/uti
 error="nrmse" # nrmse/relabs/correlation/rmse/nrmsep/relabsp
-results_folder="combined_cemon"
+results_folder="combined_cemon_bytes_new"
 efname="runtime_errors"
-basefolder="../final_results/combined"
+basefolder="../momon_data"
 [ -f "${basefolder}/${type}_${results_folder}" ] || mkdir -p "${basefolder}/${type}_${results_folder}"
 [ -f "${basefolder}/${type}_${results_folder}/${efname}" ] || mkdir -p "${basefolder}/${type}_${results_folder}/${efname}"
 error_folder="${basefolder}/${type}_${results_folder}/${efname}"
 
 
-
-for f in "${basefolder}/*.pcap";
+echo "${basefolder}/**/*.pcap"
+echo ${basefolder}/**/*.pcap
+for f in ${basefolder}/**/*.pcap;
 do
+    echo "working on $f"
     x=$(basename $f .pcap)
     output_dir=$(dirname $f)
     echo $x $output_dir
@@ -29,6 +32,7 @@ do
     echo "$status, $f"
     [ "$status" -eq "0" ] && touch "$output_dir/done_${method1}_${method2}_${type}_${results_folder}_${error}";
     # read a
+    echo "done $f"
 done;
-
+echo "done all"
 paplay "/usr/share/sounds/ubuntu/stereo/desktop-login.ogg";

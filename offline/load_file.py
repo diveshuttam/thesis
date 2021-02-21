@@ -12,10 +12,12 @@ from yaml import load, dump
 byte_count = 0
 # byte_count1 = 0
 def load_file(file_name):
+    print("here_in_load", file_name)
     path = Path(file_name)
     parent = path.parent
     base = os.path.splitext(file_name)[0]
     if f'{base}.yaml' not in os.listdir(parent):
+        print("here_in_if")
         cap = pyshark.FileCapture(f'{base}.pcap')
         global byte_count
         byte_count = 0

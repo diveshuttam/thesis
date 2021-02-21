@@ -6,6 +6,7 @@ from old_sampling_test import byte_uniform
 
 
 def periodic(x,y,bytes_poller, utilization_poller, k=100):
+    utilization_poller = bytes_poller
     periodic.__name__ = f"periodic with {(x[-1]-x[0])/k:.2f}s"
     return byte_uniform(x,y,k)
 
@@ -32,6 +33,7 @@ class window(deque):
         return len(self)
 
 def cemon(x,y,bytes_poller,utilization_poller, tmin, tmax, param, ti, td):
+    utilization_poller = bytes_poller
     print("Cemon:")
     x1,y1,z1 = [],[],[]
 
@@ -88,6 +90,7 @@ def cemon(x,y,bytes_poller,utilization_poller, tmin, tmax, param, ti, td):
 
 
 def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param, ti, td):
+    utilization_poller = bytes_poller
     print("Curvature:")
     x1,y1,z1 = [],[],[]
     
@@ -130,29 +133,31 @@ def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param, ti, td):
         win_bytes.append(current_bytes)
         dwin_bytes.append((win_bytes[-1]-win_bytes[-2])/τ)
         tdiff = x1[-1]-x1[-3]
-        ddwin_bytes.append((win_bytes[-1]-win_bytes[-3])/(tdiff))
+        # ddwin_bytes.append((dwin_bytes[-1]-dwin_bytes[-2])/(tdiff))
         #instantaneous curvature
         # print(abs(ddwin_bytes[-1]-(dwin_bytes[-2]+dwin_bytes[-1])/2.0))
         # input()
-        if(abs((dwin_bytes[-1]/(dwin_bytes[-2]+1.0))-1)>param):
-            print("increase", dwin_bytes[-2], dwin_bytes[-1], ddwin_bytes[-1])
-            if(previous==False):
-                τ = max(τ_min,τ/ti)
-                ws = max(3,ceil(ws))
-                print(f"tripling polling, {τ}")
-                previous=True
+        try:
+            if(abs((dwin_bytes[-1]/(dwin_bytes[-2]+1.0))-1)>param):
+                print("increase", dwin_bytes[-2], dwin_bytes[-1], dwin_bytes[-1])
+                if(previous==False):
+                    τ = max(τ_min,τ/ti)
+                    ws = max(3,ceil(ws))
+                    print(f"tripling polling, {τ}")
+                    previous=True
+                else:
+                    print(f'same_p, {τ}')
             else:
-                print(f'same_p, {τ}')
-        else:
-            print("decrease", dwin_bytes[-2], dwin_bytes[-1], ddwin_bytes[-1])
-            τ = min(τ_max,τ*td)
-            print(f"halfing polling, {τ}")
-            ws = ws + 1
-            previous=False
-
+                print("decrease", dwin_bytes[-2], dwin_bytes[-1], dwin_bytes[-1])
+                τ = min(τ_max,τ*td)
+                print(f"halfing polling, {τ}")
+                ws = ws + 1
+                previous=False
+        except:
+            pass
         while win_bytes.length>ws:
             win_bytes.popleft()
-            ddwin_bytes.popleft()
+            # ddwin_bytes.popleft()
             dwin_bytes.popleft()
         current_time += τ
 
@@ -225,6 +230,7 @@ def curvature(x,y,bytes_poller, utilization_poller, tmin, tmax, param, ti, td):
 
 
 def momon(x,y,bytes_poller, utilization_poller, tmin, tmax, param, ti, td):
+    utilization_poller = bytes_poller
     x1,y1,z1 = [],[],[]
     # initial variables
     current_time = x[0]
